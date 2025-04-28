@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://iyuept2wfb5n"]
+
+[ext_resource type="Script" uid="uid://0sgre6v3xet6" path="res://action_button.gd" id="1_2x52k"]
+
+[node name="ActionButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1029.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2x52k")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bgvk7ut3h8rxx"]
+
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="1_21pg7"]
+[ext_resource type="PackedScene" uid="uid://ph1t4cv1g8dd" path="res://Objects/Button/Button.tscn" id="2_0mc3k"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="3_wav5q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r2eol"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j7t6l"]
+sky_material = SubResource("ProceduralSkyMaterial_r2eol")
+
+[sub_resource type="Environment" id="Environment_4mrx2"]
+background_mode = 2
+sky = SubResource("Sky_j7t6l")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kekbd"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyaqu"]
+size = Vector3(50.3043, 0, 52.7805)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uj1tc"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0enk"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nw50x"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdls2"]
+size = Vector3(50.3043, 0, 51.6694)
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4mrx2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_21pg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158433, 0.514295, 0.415382)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.60223, 0)
+mesh = SubResource("PlaneMesh_kekbd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
+shape = SubResource("BoxShape3D_cyaqu")
+
+[node name="Test Object" type="MeshInstance3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00548, 0)
+mesh = SubResource("BoxMesh_uj1tc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Test Object"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test Object/StaticBody3D"]
+shape = SubResource("BoxShape3D_t0enk")
+
+[node name="Plane2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0167218, -33.2976)
+mesh = SubResource("PlaneMesh_nw50x")
+skeleton = NodePath("../Plane")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176941, 0, -0.507813)
+shape = SubResource("BoxShape3D_vdls2")
+
+[node name="Button" parent="." instance=ExtResource("2_0mc3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41654, 4.16369)
+prompt_msg = "Fuck"
+
+[node name="Button2" parent="." instance=ExtResource("2_0mc3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76313, -1.41654, 4.16369)
+prompt_msg = "Bruh"
+
+[node name="Area3D" parent="." instance=ExtResource("3_wav5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59971, -1.05084, 3.93042)
+to_scene = "uid://i2iwifunc2sn"

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cr2h0yvdinvgg"
+path="res://.godot/imported/mournful music.wav-4fef18fc7560bb330e0a3f660977c607.sample"
+
+[deps]
+
+source_file="res://Sound/Music/mournful music.wav"
+dest_files=["res://.godot/imported/mournful music.wav-4fef18fc7560bb330e0a3f660977c607.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

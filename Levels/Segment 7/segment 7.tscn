@@ -1,0 +1,132 @@
+[gd_scene load_steps=17 format=3 uid="uid://evrfwqatdjw2"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://oue28fibrxxp" path="res://Levels/Segment 7/new_terrain_3d_material.tres" id="1_you82"]
+[ext_resource type="Terrain3DAssets" uid="uid://bbh58eurth5xx" path="res://Levels/Segment 7/new_terrain_3d_assets.tres" id="2_1j4id"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="3_7l5ga"]
+[ext_resource type="Shader" uid="uid://beievlntjdopy" path="res://Scripts/water.gdshader" id="3_jhevg"]
+[ext_resource type="Texture2D" uid="uid://b31rd88mao3nf" path="res://Textures/vein 5 - 512x512.png" id="4_8c13b"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="6_jhevg"]
+[ext_resource type="PackedScene" uid="uid://cn86u1erfif66" path="res://Objects/Boatd/retro_low_poly_boat.glb" id="7_8c13b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8c13b"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0.132245, 0.0118687, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+ground_energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_8c13b"]
+sky_material = SubResource("ProceduralSkyMaterial_8c13b")
+
+[sub_resource type="Environment" id="Environment_7mswp"]
+background_mode = 2
+background_energy_multiplier = 10.56
+sky = SubResource("Sky_8c13b")
+tonemap_mode = 3
+glow_enabled = true
+fog_light_color = Color(0.108214, 0.0163221, 0.00824729, 1)
+fog_sun_scatter = 0.16
+fog_density = 0.05
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.605274, 0.605274, 0.605274, 1)
+volumetric_fog_length = 62.03
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[sub_resource type="FogMaterial" id="FogMaterial_8c13b"]
+density = 0.3
+albedo = Color(0.201527, 0.201527, 0.201527, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7mswp"]
+size = Vector2(1000, 1000)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mk8hm"]
+render_priority = 0
+shader = ExtResource("3_jhevg")
+shader_parameter/albedo = Color(0.00569999, 0.0548466, 0.19, 1)
+shader_parameter/noise_texture = ExtResource("4_8c13b")
+shader_parameter/scroll_speed1 = Vector2(0.505, 0.56)
+shader_parameter/scroll_speed2 = Vector2(-0.46, 0)
+shader_parameter/blend_factor = 0.5
+shader_parameter/scale1 = Vector2(1, 1)
+shader_parameter/scale2 = Vector2(1, 1)
+shader_parameter/wave_strength = 0.16
+shader_parameter/wave_scale = 0.156
+shader_parameter/pixelation_level = 68
+shader_parameter/FoamSize = 0.215
+shader_parameter/WaterOpacity = 1.0
+shader_parameter/FoamGlowIntensity = 0.62
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_you82"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f61yp"]
+material = SubResource("StandardMaterial3D_you82")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhevg"]
+size = Vector3(1, 98, 1009)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/Segment 7"
+material = ExtResource("1_you82")
+assets = ExtResource("2_1j4id")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Terrain3D"]
+environment = SubResource("Environment_7mswp")
+
+[node name="FogVolume" type="FogVolume" parent="Terrain3D/WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 78.5, -35)
+size = Vector3(481, 237, 248)
+shape = 0
+material = SubResource("FogMaterial_8c13b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 505)
+mesh = SubResource("PlaneMesh_7mswp")
+surface_material_override/0 = SubResource("ShaderMaterial_mk8hm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Terrain3D"]
+transform = Transform3D(-1, 8.74228e-08, -1.22284e-14, 0, -4.37114e-08, -3.2, -8.74228e-08, -1, 1.39876e-07, -7, 9, 234)
+mesh = SubResource("PlaneMesh_f61yp")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Terrain3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, -1.52466e-20, 0, 1, -1.52767e-13, -2.11758e-22, 0, 0.3125, 0, 1, -0.3125)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_range = 10.382
+
+[node name="Player" parent="." instance=ExtResource("3_7l5ga")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 15.9, 5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 11.5, -126)
+shape = SubResource("BoxShape3D_jhevg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -6.5, -130.5)
+shape = SubResource("BoxShape3D_jhevg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 113, 0.5, 104.5)
+shape = SubResource("BoxShape3D_jhevg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 113, 21.5, -2.5)
+shape = SubResource("BoxShape3D_jhevg")
+
+[node name="Area3D" parent="." instance=ExtResource("6_jhevg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 101)
+visible = false
+to_scene = "uid://cwugh0j418wmf"
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("7_8c13b")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, -8.88178e-16, 1, 0, -4.37114e-08, -5, 2.8, 105)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://drj1xtjwugdht"]
+
+[ext_resource type="PackedScene" uid="uid://ytuv2lrassdw" path="res://Objects/Apartment/psx_apartment.glb" id="1_jy8j1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ghccl"]
+size = Vector3(5.3, 2.3, 4.4)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_jy8j1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0499997, 1.25, -5.96046e-08)
+shape = SubResource("BoxShape3D_ghccl")

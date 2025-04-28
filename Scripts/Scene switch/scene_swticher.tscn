@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://twqk2uo7cby6"]
+
+[ext_resource type="Script" uid="uid://ebvg4aitgg7v" path="res://Scripts/Scene switch/scene_switcher.gd" id="1_u7xet"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_labx7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apfyc"]
+size = Vector3(1.4566, 1.09583, 1.31)
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_u7xet")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_labx7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0611877, 0.0479126, -0.016449)
+shape = SubResource("BoxShape3D_apfyc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]

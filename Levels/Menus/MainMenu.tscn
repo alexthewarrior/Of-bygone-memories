@@ -1,0 +1,207 @@
+[gd_scene load_steps=23 format=3 uid="uid://bnwcarjjb4osx"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://xl0mr2v1242r" path="res://Levels/Menus/new_terrain_3d_material.tres" id="1_72h0n"]
+[ext_resource type="Script" uid="uid://cbhesgom7erha" path="res://Levels/Menus/bg.gd" id="1_g0u71"]
+[ext_resource type="Terrain3DAssets" uid="uid://dmgg0k2s3em4j" path="res://Levels/Menus/new_terrain_3d_assets.tres" id="2_g0u71"]
+[ext_resource type="MeshLibrary" uid="uid://c0f0ppei38nr5" path="res://Objects/FirTree.tres" id="3_nvhbj"]
+[ext_resource type="Script" uid="uid://c67vse26shao2" path="res://Levels/Menus/mainmenu.gd" id="5_72h0n"]
+[ext_resource type="PackedScene" uid="uid://c2udlk8edmfs" path="res://vhs.tscn" id="7_72h0n"]
+[ext_resource type="FontFile" uid="uid://b408igj3ynf03" path="res://Futura Std Light.otf" id="7_visqm"]
+[ext_resource type="AudioStream" uid="uid://cq8spylovvygi" path="res://Sound/Music/edited_somber.wav" id="8_nl34e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqjrg"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 4.76
+
+[sub_resource type="Sky" id="Sky_g0u71"]
+sky_material = SubResource("ProceduralSkyMaterial_cqjrg")
+
+[sub_resource type="Environment" id="Environment_e2xy7"]
+background_mode = 2
+sky = SubResource("Sky_g0u71")
+tonemap_mode = 3
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.286237, 0.312849, 0.354682, 1)
+fog_density = 0.1948
+volumetric_fog_density = 0.1
+volumetric_fog_length = 115.03
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiy7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h7a2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qoqlk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwfq2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r1g0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqjrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2xy7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fimr5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7cqb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afec1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31qfy"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="BG" type="Node3D" parent="."]
+script = ExtResource("1_g0u71")
+
+[node name="Terrain3D" type="Terrain3D" parent="BG"]
+data_directory = "res://Levels/Menus"
+material = ExtResource("1_72h0n")
+assets = ExtResource("2_g0u71")
+collision_layer = 65535
+collision_mask = 65535
+render_layers = 2148532223
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BG/Terrain3D"]
+environment = SubResource("Environment_e2xy7")
+
+[node name="GridMap" type="GridMap" parent="BG/Terrain3D"]
+mesh_library = ExtResource("3_nvhbj")
+data = {
+"cells": PackedInt32Array(-5, 13, 0, -3, 13, 0, -2, 13, 0, -1, 13, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0, -6, 17, 0, -5, 17, 0, -4, 17, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -4, 13, 0, -7, 13, 0, -8, 17, 0, -10, 16, 0, -10, 15, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BG"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="BG/SubViewportContainer"]
+handle_input_locally = false
+msaa_3d = 3
+use_taa = true
+use_debanding = true
+use_occlusion_culling = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(-2.70101e-08, 0.422618, 0.906308, 1.2595e-08, 0.906308, -0.422618, -1, -6.21725e-15, -2.98023e-08, -11.5, 1.3, 31.1)
+keep_aspect = 0
+current = true
+fov = 98.8
+far = 10.0
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_72h0n")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("7_visqm")
+theme_override_font_sizes/font_size = 40
+text = "Of bygone memories"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Start" type="Button" parent="Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_visqm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eiy7p")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_h7a2f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoqlk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iwfq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7r1g0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cqjrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e2xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fimr5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7cqb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_afec1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31qfy")
+text = "Start
+"
+
+[node name="Settings" type="Button" parent="Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_visqm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eiy7p")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_h7a2f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoqlk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iwfq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7r1g0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cqjrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e2xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fimr5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7cqb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_afec1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31qfy")
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="Menu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_visqm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eiy7p")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_h7a2f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoqlk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iwfq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7r1g0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cqjrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e2xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fimr5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7cqb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_afec1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31qfy")
+text = "Quit
+"
+
+[node name="VHS" parent="." instance=ExtResource("7_72h0n")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_nl34e")
+autoplay = true
+
+[connection signal="ready" from="BG/Terrain3D" to="BG" method="_on_terrain_3d_ready"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/VBoxContainer/Start" to="Menu" method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/VBoxContainer/Settings" to="Menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/VBoxContainer/Quit" to="Menu" method="_on_quit_pressed"]

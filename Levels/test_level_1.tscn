@@ -1,0 +1,116 @@
+[gd_scene load_steps=17 format=3 uid="uid://bgvk7ut3h8rxx"]
+
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="1_q2uhr"]
+[ext_resource type="PackedScene" uid="uid://ph1t4cv1g8dd" path="res://Objects/Button/Button.tscn" id="2_lxhny"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="3_g4pbq"]
+[ext_resource type="Script" uid="uid://bbea5bhblahi5" path="res://Levels/vergil.gd" id="4_fms41"]
+[ext_resource type="Texture2D" uid="uid://v03b2odivbvf" path="res://easter1.jpg" id="4_vqjo5"]
+[ext_resource type="AudioStream" uid="uid://d0vc27dl47rsk" path="res://Sound/SFX/wheersypurmotivation.wav" id="6_fms41"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r2eol"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j7t6l"]
+sky_material = SubResource("ProceduralSkyMaterial_r2eol")
+
+[sub_resource type="Environment" id="Environment_4mrx2"]
+background_mode = 2
+sky = SubResource("Sky_j7t6l")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kekbd"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyaqu"]
+size = Vector3(50.3043, 0, 52.7805)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uj1tc"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0enk"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nw50x"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdls2"]
+size = Vector3(50.3043, 0, 51.6694)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vyijd"]
+size = Vector3(1.98969, 0.440796, 1.94196)
+
+[node name="test_level_1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4mrx2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_q2uhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158433, 0.514295, 0.415382)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842511, -1.40681, -1.48543)
+mesh = SubResource("PlaneMesh_kekbd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
+shape = SubResource("BoxShape3D_cyaqu")
+
+[node name="Test Object" type="MeshInstance3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00548, 0)
+mesh = SubResource("BoxMesh_uj1tc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Test Object"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test Object/StaticBody3D"]
+shape = SubResource("BoxShape3D_t0enk")
+
+[node name="Plane2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0167218, -33.2976)
+mesh = SubResource("PlaneMesh_nw50x")
+skeleton = NodePath("../Plane")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176941, 0, -0.507813)
+shape = SubResource("BoxShape3D_vdls2")
+
+[node name="Button" parent="." instance=ExtResource("2_lxhny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41654, 4.16369)
+prompt_msg = "Fuck"
+
+[node name="Button2" parent="." instance=ExtResource("2_lxhny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76313, -1.41654, 4.16369)
+prompt_msg = "Bruh"
+
+[node name="Area3D" parent="." instance=ExtResource("3_g4pbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78855, -0.44029, 3.90234)
+to_scene = "res://Levels/test_level_2.tscn"
+
+[node name="Vergil" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.44925, 2.41274)
+script = ExtResource("4_fms41")
+prompt_msg = "I feel a bit motivated"
+
+[node name="Decal" type="Decal" parent="Vergil"]
+size = Vector3(2, 1.07629, 2)
+texture_albedo = ExtResource("4_vqjo5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vergil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0050354, 0.189636, 0.0027771)
+shape = SubResource("BoxShape3D_vyijd")
+
+[node name="motivation" type="AudioStreamPlayer3D" parent="Vergil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387729, 0)
+stream = ExtResource("6_fms41")
+
+[connection signal="tree_entered" from="Area3D" to="Area3D" method="_on_tree_entered"]
+[connection signal="interacted" from="Vergil" to="Vergil" method="_on_interacted"]

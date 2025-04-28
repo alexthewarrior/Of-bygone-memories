@@ -1,0 +1,572 @@
+[gd_scene load_steps=38 format=3 uid="uid://whn0oqpsjkmf"]
+
+[ext_resource type="Script" uid="uid://cd76imob2h2eb" path="res://Scripts/menu_script.gd" id="1_864lm"]
+[ext_resource type="FontFile" uid="uid://b408igj3ynf03" path="res://Futura Std Light.otf" id="1_qdsjd"]
+[ext_resource type="Script" uid="uid://benj5jygmc284" path="res://Scripts/controls.gd" id="3_qmr5i"]
+[ext_resource type="PackedScene" uid="uid://ck5npg4iq5mbb" path="res://Levels/Menus/input_button.tscn" id="4_qbbtr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3erx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pjta"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3tpt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3r8p3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1x1b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3soxx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ry3lu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u0j7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fic7g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_juktl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6n6wc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aatwx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wnnh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8eb56"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oj2b8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lh7u5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tku3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apq4w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bvvq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hae1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apsit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgw7d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1syk5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmhdv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3q40o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ugmm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3sfhj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k04r0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c88dw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlvkn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37aqc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tlaap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_160le"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_864lm")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 40
+text = "Of bygone memories"
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Begin" type="Button" parent="Main/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Start
+"
+
+[node name="Settings" type="Button" parent="Main/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="Main/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Quit
+
+"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sound" type="Button" parent="Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Sound
+"
+
+[node name="Dipsplay" type="Button" parent="Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Display
+"
+
+[node name="Controls" type="Button" parent="Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Controls
+
+"
+
+[node name="BackToSettings" type="Button" parent="Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3erx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2pjta")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q3tpt")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3r8p3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_o1x1b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3soxx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ry3lu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_u0j7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fic7g")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_juktl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6n6wc")
+text = "Main Menu
+"
+
+[node name="Display" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Display/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Display/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Display/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="fullscreen" type="Label" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "Fullscreen"
+
+[node name="vsync" type="Label" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+
+[node name="resolution" type="Label" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Display/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="fullscreen" type="CheckBox" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vsync" type="CheckBox" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="resolution" type="OptionButton" parent="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 4
+popup/item_0/text = "1928x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "1152x648"
+popup/item_3/id = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Display/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackToSettingsD" type="Button" parent="Display/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aatwx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7wnnh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8eb56")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_oj2b8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lh7u5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tku3w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_apq4w")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7bvvq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4hae1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_apsit")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fgw7d")
+text = "Main Menu
+"
+
+[node name="Controls" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_qmr5i")
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ActionList" type="VBoxContainer" parent="Controls/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InputButton" parent="Controls/MarginContainer/VBoxContainer/MarginContainer/ActionList" instance=ExtResource("4_qbbtr")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Controls/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="BackToSettings" type="Button" parent="Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1syk5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rmhdv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3q40o")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_6ugmm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3sfhj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_k04r0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c88dw")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dlvkn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_37aqc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tlaap")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_160le")
+text = "Main Menu
+"
+
+[node name="Sound" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sound/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Sound/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Master" type="Label" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "Master"
+
+[node name="MasterVol" type="HSlider" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Music" type="Label" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "Music"
+
+[node name="MusicVol" type="HSlider" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SFX" type="Label" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+text = "SFX"
+
+[node name="SFXVol" type="HSlider" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Sound/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MarginContainer2" type="MarginContainer" parent="Sound/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackToSettings" type="Button" parent="Sound/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdsjd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aatwx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7wnnh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8eb56")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_oj2b8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lh7u5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tku3w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_apq4w")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7bvvq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4hae1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_apsit")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fgw7d")
+text = "Main Menu
+"
+
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/VBoxContainer/Begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/VBoxContainer/Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/VBoxContainer/Dipsplay" to="." method="_on_dipsplay_pressed"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/VBoxContainer/BackToSettings" to="." method="_on_back_to_settings_pressed"]
+[connection signal="toggled" from="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/vsync" to="." method="_on_vsync_toggled"]
+[connection signal="item_selected" from="Display/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="pressed" from="Controls/MarginContainer/VBoxContainer/BackToSettings" to="." method="_on_back_to_settings_pressed"]
+[connection signal="value_changed" from="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MasterVol" to="." method="_on_master_vol_value_changed"]
+[connection signal="value_changed" from="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MusicVol" to="." method="_on_music_vol_value_changed"]
+[connection signal="value_changed" from="Sound/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SFXVol" to="." method="_on_sfx_vol_value_changed"]
+[connection signal="pressed" from="Sound/MarginContainer/VBoxContainer/VBoxContainer/BackToSettings" to="." method="_on_back_to_settings_pressed"]

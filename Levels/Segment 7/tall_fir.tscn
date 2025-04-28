@@ -1,0 +1,158 @@
+[gd_scene load_steps=11 format=4 uid="uid://cub12lx860why"]
+
+[ext_resource type="PackedScene" uid="uid://ba4i7p6oyhmsy" path="res://tall fir.glb" id="1_goare"]
+[ext_resource type="Texture2D" uid="uid://fi1wu7lsm32r" path="res://tall fir_fir tree leaves.png" id="2_3i2id"]
+[ext_resource type="Texture2D" uid="uid://cm7dq3t5q3gcq" path="res://tall fir_Bark001_1K-JPG_Color_E.jpg" id="3_kp5j8"]
+
+[sub_resource type="Shader" id="Shader_goare"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, depth_prepass_alpha;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+group_uniforms wind;
+uniform sampler2D noise_tex;
+uniform float wind_speed = .05;
+uniform float wind_strength = .01;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	
+	vec3 GLOBAL_VERTEX = (MODEL_MATRIX * vec4(VERTEX, 1.)).xyz;
+ 
+	float offset = TIME * wind_speed;
+	float noise = texture(noise_tex, vec2(GLOBAL_VERTEX.x-offset)).r;
+	noise -= .5;
+	noise *= wind_strength;
+	VERTEX.xy += noise * length(VERTEX.y) * length(VERTEX.xz);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ox2bb"]
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_goare"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_ox2bb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i2id"]
+resource_name = "Pine Needles"
+render_priority = 0
+shader = SubResource("Shader_goare")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_3i2id")
+shader_parameter/albedo_texture_size = Vector2i(128, 128)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_goare")
+shader_parameter/wind_speed = 0.005
+shader_parameter/wind_strength = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlml2"]
+resource_name = "Bark"
+cull_mode = 2
+albedo_texture = ExtResource("3_kp5j8")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m0x4s"]
+_surfaces = [{
+"aabb": AABB(-2.88489, 1.74799, -3.12841, 5.76045, 27.7047, 6.14549),
+"format": 34896613377,
+"index_count": 225,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAACAAQAAAAFAAMAAAAEAAUABgAHAAgABgAJAAcABgAIAAoABgALAAkABgAKAAsADAANAA4ADAAPAA0ADAAOABAADAARAA8ADAAQABEAEgATABQAEgAVABMAEgAUABYAEgAXABUAEgAWABcAGAAZABoAGAAbABkAGAAaABwAGAAdABsAGAAcAB0AHgAfACAAHgAhAB8AHgAgACIAHgAjACEAHgAiACMAJAAlACYAJAAnACUAJAAmACgAJAApACcAJAAoACkAKgArACwAKgAtACsAKgAsAC4AKgAvAC0AKgAuAC8AMAAxADIAMAAzADEAMAAyADQAMAA1ADMAMAA0ADUANgA3ADgANgA5ADcANgA4ADoANgA7ADkANgA6ADsAPAA9AD4APAA/AD0APAA+AEAAPABBAD8APABAAEEAQgBDAEQAQgBFAEMAQgBEAEYAQgBHAEUAQgBGAEcASABJAEoASABLAEkASABKAEwASABNAEsASABMAE0ATgBPAFAATgBRAE8ATgBQAFIATgBTAFEATgBSAFMAVABVAFYAVABXAFUAVABWAFgAVABZAFcAVABYAFkA"),
+"name": "Pine Needles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 90,
+"vertex_data": PackedByteArray("coC3TlGCAAAbkoIHAAAAAAAA9AKeXgAA//8JD91bAADmV08J//8AAJi3AAC22gAAcoCSWlGCAAAVLqcSpR4AAG8PDQ7MuwAAK7tBGhYXAADsv3gUZvEAAN/lEQs6mwAAcoCNZlGCAABkAOkdEnMAAF9dQxk38QAAqlqWJTEUAADz+78fU6UAAFDXPxa0UgAAcoClclGCAACBHkcpbskAAO+4lSTk4wAAFBcJMZ5PAACb7SIrg0sAAO2YiiG/KgAAcoDdflGCAAB3ccM04fAAAG3tBTCaoAAAPBSYPPCiAADZoqI2rxcAAKlR8ixRNwAAcoA1i1GCAABUxlxA4dYAAFXgkjuLUQAAoU5FSErdAACYSkBCESQAAGYqdzgubQAAcoCsl1GCAAAY7RNMQI8AADWePUc5JAAAgaARVL/fAACqF/xNnWQAAMA2GkS2qgAAcoBDpFGCAACL0+hX+0UAAIZQBVOHLwAA2dn6X1StAADVI9ZZ0LAAAK5r2k+czAAAcoD6sFGCAAAojdxjgiQAAPwj7F6faAAAQtwCbKNmAABCY85lyNwAACSouVvywQAAcoDSvVGCAAAoRe5vkjoAABkv8WqxqwAAt6opeCE1AAAjruVxR9IAAHTJtmc/lAAAcoDLylGCAABFJB98V3cAADJnFXcl0gAAQGVvhAwzAABZ2Rt+hJsAAPm+0nMLYAAAcoDl11GCAADyOW+IgbUAABypWYONyAAAmTTVkNJdAAAGz3GK3loAABGSDYBIQwAAcoAh5VGCAACqdd+U59EAAOXOvI8dmAAAjTJancyZAAA2meaWjzUAAMVeZ4xUTAAAcoB+8lGCAADAsm6hL78AAHjFPpw1XwAAllwAqs3DAACvWXujeT4AAIJC4ZgacwAAcoD//1GCAACnzh6uoIsAAN+V4aiWPgAAhpfGtpLFAAAGNTCw72wAAGZLe6VknwAA")
+}, {
+"aabb": AABB(-0.470048, -1.52235, -0.5, 0.951057, 30.8005, 0.904508),
+"format": 34896613377,
+"index_count": 15,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAFAAIABQAEAAIA"),
+"name": "Bark",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("/3+nDAAAAAD//6cMyGEAAP9///+CjQAAGs8AAP//AAAAAKcMyGEAAOQwpwz//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6467e"]
+resource_name = "tall fir_Cone_001"
+_surfaces = [{
+"aabb": AABB(-2.88489, 1.74799, -3.12841, 5.76045, 27.7047, 6.14549),
+"attribute_data": PackedByteArray("/38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA/////////38AAP8T/////////38AAAAA/////////38AAP8o/////////38AAP8o/////////38AAAAA////////"),
+"format": 34896613399,
+"index_count": 225,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4AbwBwAHEAcgBzAHQAdQB2AHcAeAB5AHoAewB8AH0AfgB/AIAAgQCCAIMAhACFAIYAhwCIAIkAigCLAIwAjQCOAI8AkACRAJIAkwCUAJUAlgCXAJgAmQCaAJsAnACdAJ4AnwCgAKEAogCjAKQApQCmAKcAqACpAKoAqwCsAK0ArgCvALAAsQCyALMAtAC1ALYAtwC4ALkAugC7ALwAvQC+AL8AwADBAMIAwwDEAMUAxgDHAMgAyQDKAMsAzADNAM4AzwDQANEA0gDTANQA1QDWANcA2ADZANoA2wDcAN0A3gDfAOAA"),
+"material": SubResource("ShaderMaterial_3i2id"),
+"name": "Pine Needles",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 225,
+"vertex_data": PackedByteArray("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")
+}, {
+"aabb": AABB(-0.470048, -1.52235, -0.5, 0.951057, 30.8005, 0.904508),
+"attribute_data": PackedByteArray("V7DfQkLE30JNuv//LNgKQxXs0EIV7P//bpwKQ1ew0EJXsP//FewKQ///0EL/////QsTfQizY30I3zv//"),
+"format": 34896613399,
+"index_count": 15,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4A"),
+"material": SubResource("StandardMaterial3D_xlml2"),
+"name": "Bark",
+"primitive": 3,
+"uv_scale": Vector4(1.78113, 3.83143, 0, 0),
+"vertex_count": 15,
+"vertex_data": PackedByteArray("/3+nDAAAdv///6cMyGF2//9///+CjXb///+nDMhhsdgazwAA//+x2P9///+CjbHYGs8AAP//s87kMKcM//+zzv9///+CjbPO5DCnDP//s/0AAKcMyGGz/f9///+CjbP9AACnDMhhdv//f6cMAAB2//9///+CjXb/ceA2gHHgNoBx4DaAjalRZI2pUWSNqVFkVQKWAVUClgFVApYB6f6Tyun+k8rp/pPKx/9xYMf/cWDH/3Fg")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m0x4s")
+
+[node name="tall fir" instance=ExtResource("1_goare")]
+
+[node name="Tall Fir Tree" parent="." index="0"]
+mesh = SubResource("ArrayMesh_6467e")

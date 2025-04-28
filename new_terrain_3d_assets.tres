@@ -1,0 +1,23 @@
+[gd_resource type="Terrain3DAssets" load_steps=6 format=3 uid="uid://chfhlan2srpa8"]
+
+[ext_resource type="PackedScene" uid="uid://c5tfslntgrtcq" path="res://black_obelisk.tscn" id="1_2leg2"]
+[ext_resource type="Texture2D" uid="uid://7loeue8isnba" path="res://Levels/Segment 6/Textures/red-ground.png" id="2_2leg2"]
+[ext_resource type="Texture2D" uid="uid://br0xcnu323n1c" path="res://Levels/Segment 6/Textures/red-ground_n.png" id="3_wj2b0"]
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_lgxgi"]
+name = "black_obelisk"
+density = 0.116489
+visibility_range = 473.25
+cast_shadows = 0
+scene_file = ExtResource("1_2leg2")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_wj2b0"]
+name = "red sand ground"
+albedo_texture = ExtResource("2_2leg2")
+normal_texture = ExtResource("3_wj2b0")
+uv_scale = 0.103
+detiling = 0.781
+
+[resource]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_lgxgi")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_wj2b0")])

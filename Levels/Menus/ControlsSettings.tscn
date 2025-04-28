@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1tkjak4lhwib"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://xl0mr2v1242r" path="res://Levels/Menus/new_terrain_3d_material.tres" id="1_8vf6g"]
+[ext_resource type="Script" uid="uid://cbhesgom7erha" path="res://Levels/Menus/bg.gd" id="1_sylgo"]
+[ext_resource type="Terrain3DAssets" uid="uid://dmgg0k2s3em4j" path="res://Levels/Menus/new_terrain_3d_assets.tres" id="2_5uy7h"]
+[ext_resource type="MeshLibrary" uid="uid://c0f0ppei38nr5" path="res://Objects/FirTree.tres" id="3_7xegp"]
+[ext_resource type="PackedScene" uid="uid://c2udlk8edmfs" path="res://vhs.tscn" id="6_4u5nd"]
+[ext_resource type="Script" uid="uid://bcqo7ug5nmrdj" path="res://Scripts/settings.gd" id="6_vnhnr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_otywu"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 4.76
+
+[sub_resource type="Sky" id="Sky_g0u71"]
+sky_material = SubResource("ProceduralSkyMaterial_otywu")
+
+[sub_resource type="Environment" id="Environment_uoffb"]
+background_mode = 2
+sky = SubResource("Sky_g0u71")
+tonemap_mode = 3
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.286237, 0.312849, 0.354682, 1)
+fog_density = 0.1948
+volumetric_fog_density = 0.1
+volumetric_fog_length = 115.03
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="BG" type="Node3D" parent="."]
+script = ExtResource("1_sylgo")
+
+[node name="Terrain3D" type="Terrain3D" parent="BG"]
+data_directory = "res://Levels/MainMenu"
+material = ExtResource("1_8vf6g")
+assets = ExtResource("2_5uy7h")
+collision_layer = 65535
+collision_mask = 65535
+render_layers = 2148532223
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BG/Terrain3D"]
+environment = SubResource("Environment_uoffb")
+
+[node name="GridMap" type="GridMap" parent="BG/Terrain3D"]
+mesh_library = ExtResource("3_7xegp")
+data = {
+"cells": PackedInt32Array(-5, 13, 0, -3, 13, 0, -2, 13, 0, -1, 13, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0, -6, 17, 0, -5, 17, 0, -4, 17, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -4, 13, 0, -7, 13, 0, -8, 17, 0, -10, 16, 0, -10, 15, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BG"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="BG/SubViewportContainer"]
+handle_input_locally = false
+msaa_3d = 3
+use_taa = true
+use_debanding = true
+use_occlusion_culling = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(-2.70101e-08, 0.422618, 0.906308, 1.2595e-08, 0.906308, -0.422618, -1, -6.21725e-15, -2.98023e-08, -11.5, 1.3, 31.1)
+keep_aspect = 0
+current = true
+fov = 98.8
+far = 10.0
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_vnhnr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VHS" parent="." instance=ExtResource("6_4u5nd")]
+
+[connection signal="ready" from="BG/Terrain3D" to="BG" method="_on_terrain_3d_ready"]

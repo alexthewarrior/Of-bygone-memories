@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddqcb8fi2jkyw"]
+
+[ext_resource type="PackedScene" uid="uid://c0kmr6xbt4ige" path="res://Objects/Grave/psx_grave_stone.glb" id="1_my73n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wk38h"]
+size = Vector3(0.6, 0.7, 0.2)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_my73n")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 2.98023e-08)
+shape = SubResource("BoxShape3D_wk38h")

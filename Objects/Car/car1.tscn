@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck74qq8nw37xo"]
+
+[ext_resource type="PackedScene" uid="uid://bgtcciyoxj6b6" path="res://Objects/Car/psx_sedan_car_-_jonniemadeit.glb" id="1_7enhq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wa53"]
+size = Vector3(3.5, 1, 2.1)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_7enhq")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -0.0499999)
+shape = SubResource("BoxShape3D_0wa53")

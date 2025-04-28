@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4xvlgk1stpda"]
+
+[ext_resource type="Script" uid="uid://tnu687whdoyh" path="res://Interaction/area_text.gd" id="1_00jaw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vwq40"]
+
+[node name="AreaTrigger" type="Node3D"]
+script = ExtResource("1_00jaw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_vwq40")
+
+[node name="CanvasGroup" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasGroup"]
+offset_left = 560.0
+offset_top = 476.0
+offset_right = 600.0
+offset_bottom = 499.0

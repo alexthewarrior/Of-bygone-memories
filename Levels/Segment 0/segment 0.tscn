@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcrt4nwi6u6wo"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://dyea54pw2c615" path="res://Levels/MainMenu/new_terrain_3d_material.tres" id="1_nflw5"]
+[ext_resource type="Terrain3DAssets" uid="uid://dgvno7d6xvuxl" path="res://Levels/MainMenu/new_terrain_3d_assets.tres" id="2_oj6ey"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="3_m8yph"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="4_rcnnw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qp5y6"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 4.76
+
+[sub_resource type="Sky" id="Sky_m8yph"]
+sky_material = SubResource("ProceduralSkyMaterial_qp5y6")
+
+[sub_resource type="Environment" id="Environment_nflw5"]
+background_mode = 2
+sky = SubResource("Sky_m8yph")
+tonemap_mode = 3
+glow_enabled = true
+fog_light_color = Color(0.113261, 0.127052, 0.148733, 1)
+fog_density = 0.299
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_length = 115.03
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/Segment 0"
+material = ExtResource("1_nflw5")
+assets = ExtResource("2_oj6ey")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Area3D" parent="." instance=ExtResource("3_m8yph")]
+to_scene = "uid://c3i55yw3e0ewo"
+
+[node name="Player" parent="." instance=ExtResource("4_rcnnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132, 0, -126)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nflw5")

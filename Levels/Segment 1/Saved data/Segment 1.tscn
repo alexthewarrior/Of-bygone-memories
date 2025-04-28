@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://c3i55yw3e0ewo"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://b7hwjt0nvfo3" path="res://Levels/Segment 1/Saved data/new_terrain_3d_material.tres" id="1_sk2h8"]
+[ext_resource type="Terrain3DAssets" uid="uid://2sjmqmwr6bjy" path="res://Levels/Segment 1/Saved data/new_terrain_3d_assets.tres" id="2_mm5q3"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="3_g7n40"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="3_mm5q3"]
+[ext_resource type="MeshLibrary" uid="uid://c0f0ppei38nr5" path="res://Objects/FirTree.tres" id="4_g7n40"]
+[ext_resource type="MeshLibrary" uid="uid://dddev3yqoypqr" path="res://Objects/Lamp1.tres" id="5_vl15e"]
+[ext_resource type="Texture2D" uid="uid://duespcee1hakd" path="res://Textures/night sky.jpg" id="7_17apl"]
+[ext_resource type="PackedScene" uid="uid://22tkohb6q3rr" path="res://Objects/diner/diner.tscn" id="8_ks3av"]
+[ext_resource type="Script" uid="uid://bbea5bhblahi5" path="res://Levels/vergil.gd" id="9_gxcpq"]
+[ext_resource type="Texture2D" uid="uid://v03b2odivbvf" path="res://easter1.jpg" id="10_o0pwy"]
+[ext_resource type="AudioStream" uid="uid://d0vc27dl47rsk" path="res://Sound/SFX/wheersypurmotivation.wav" id="11_o0pwy"]
+[ext_resource type="ArrayOccluder3D" uid="uid://ydykp0xx71i0" path="res://Levels/Segment 1/Saved data/Segment 1.occ" id="12_o0pwy"]
+[ext_resource type="AudioStream" uid="uid://bnblt7pxop433" path="res://Sound/SFX/midnight.wav" id="13_cts12"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vl15e"]
+panorama = ExtResource("7_17apl")
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_ks3av"]
+sky_material = SubResource("PanoramaSkyMaterial_vl15e")
+
+[sub_resource type="Environment" id="Environment_325su"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_ks3av")
+ambient_light_energy = 0.0
+tonemap_mode = 3
+fog_light_color = Color(0.0712421, 0.0816423, 0.0979939, 1)
+fog_light_energy = 1.02
+fog_density = 0.1462
+volumetric_fog_density = 0.1
+volumetric_fog_length = 321.3
+volumetric_fog_sky_affect = 0.14
+adjustment_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2wvs"]
+size = Vector3(1000, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ks3av"]
+size = Vector3(1000, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wgldv"]
+size = Vector3(1.98969, 0.440796, 1.94196)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cts12"]
+size = Vector3(129, 15, 107)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ir7ep"]
+size = Vector3(82, 14, 15)
+
+[node name="Segment 1" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("3_g7n40")]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, -639.9, -0.1, -5.5)
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="Terrain3D" type="Terrain3D" parent="Enviroment"]
+data_directory = "res://Levels/Segment 1"
+material = ExtResource("1_sk2h8")
+assets = ExtResource("2_mm5q3")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Area3D" parent="Enviroment/Terrain3D" instance=ExtResource("3_mm5q3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -343, 1, -3.5)
+visible = false
+to_scene = "uid://dk1pher2p3xtp"
+
+[node name="GridMap" type="GridMap" parent="Enviroment/Terrain3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -470, 0, -7)
+mesh_library = ExtResource("4_g7n40")
+cell_size = Vector3(4, 5, 5)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65492, 65532, 0, 65498, 65531, 0, 65498, 65527, 0, 65501, 65529, 0, 65501, 65530, 0, 65504, 65529, 0, 65505, 65529, 0, 65505, 65528, 0, 65503, 65531, 0, 65499, 65533, 0, 65496, 65533, 0, 65496, 65534, 0, 65494, 65532, 0, 65494, 65530, 0, 65495, 65528, 0, 65496, 65529, 0, 65496, 65530, 0, 65496, 65531, 0, 65500, 65528, 0, 65499, 65528, 0, 65500, 65530, 0, 65500, 65531, 0, 65502, 65531, 0, 65506, 65530, 0, 65506, 65529, 0, 65504, 65527, 0, 65501, 65532, 0, 65500, 65532, 0, 65501, 65534, 0, 65503, 65533, 0, 65504, 65532, 0, 65506, 65531, 0, 65508, 65531, 0, 65510, 65530, 0, 65513, 65530, 0, 65509, 65530, 0, 65515, 65530, 0, 65516, 65530, 0, 65517, 65531, 0, 65511, 65530, 0, 65512, 65531, 0, 65512, 65530, 0, 65510, 65531, 0, 65505, 65532, 0, 65507, 65531, 0, 65499, 65534, 0, 65498, 65535, 0, 65496, 65535, 0, 65495, 65535, 0, 65494, 0, 0, 65497, 65534, 0, 65502, 65532, 0, 65504, 65531, 0, 65519, 65530, 0, 65518, 65530, 0, 65521, 65530, 0, 65522, 65531, 0, 65524, 65530, 0, 65525, 65531, 0, 65526, 65531, 0, 65527, 65532, 0, 65528, 65532, 0, 65530, 65532, 0, 65532, 65532, 0, 65534, 65531, 0, 0, 65531, 0, 1, 65531, 0, 3, 65531, 0, 4, 65531, 0, 5, 65531, 0, 6, 65531, 0, 7, 65531, 0, 8, 65532, 0, 9, 65532, 0, 10, 65532, 0, 11, 65532, 0, 12, 65533, 0, 14, 65532, 0, 16, 65533, 0, 14, 65530, 0, 14, 65529, 0, 13, 65529, 0, 11, 65528, 0, 10, 65528, 0, 8, 65528, 0, 8, 65529, 0, 8, 65530, 0, 9, 65530, 0, 10, 65530, 0, 11, 65530, 0, 12, 65530, 0, 11, 65529, 0, 10, 65529, 0, 9, 65528, 0, 4, 65529, 0, 3, 65529, 0, 2, 65529, 0, 65535, 65528, 0, 65534, 65528, 0, 65533, 65528, 0, 65532, 65528, 0, 65529, 65528, 0, 65528, 65528, 0, 65527, 65528, 0, 4, 65528, 0, 5, 65528, 0, 7, 65527, 0, 7, 65526, 0, 65531, 65529, 0, 65532, 65529, 0, 3, 65528, 0, 2, 65528, 0, 1, 65528, 0, 0, 65528, 0, 65535, 65527, 0, 65534, 65527, 0, 65533, 65527, 0, 65532, 65527, 0, 65533, 65529, 0, 65534, 65529, 0, 65535, 65529, 0, 19, 65529, 0, 22, 65531, 0, 23, 65531, 0, 26, 65528, 0, 26, 65529, 0, 27, 65529, 0, 27, 65530, 0, 28, 65531, 0, 30, 65527, 0, 30, 65528, 0, 30, 65529, 0, 30, 65530, 0, 30, 65531, 0, 29, 65532, 0, 31, 65530, 0, 31, 65529, 0, 30, 65532, 0, 30, 65533, 0, 30, 65534, 0, 29, 65533, 0, 28, 65533, 0, 25, 65531, 0, 24, 65531, 0, 23, 65530, 0, 22, 65530, 0, 21, 65534, 0, 22, 65534, 0, 23, 65534, 0, 26, 65531, 0, 25, 65530, 0, 25, 65529, 0, 24, 65529, 0, 20, 65529, 0, 16, 65529, 0, 19, 65531, 0, 19, 65532, 0, 18, 65532, 0, 18, 65531, 0, 18, 65530, 0, 17, 65528, 0, 22, 65528, 0, 23, 65528, 0, 24, 65528, 0, 25, 65528, 0, 28, 65527, 0, 28, 65530, 0, 26, 65530, 0, 21, 65532, 0, 20, 65530, 0, 19, 65533, 0, 20, 65533, 0, 29, 65531, 0, 28, 65528, 0, 31, 65533, 0, 28, 65534, 0, 32, 65531, 0, 32, 65530, 0, 32, 65529, 0, 26, 65534, 0, 25, 65534, 0, 24, 65533, 0, 23, 65532, 0, 27, 65534, 0, 26, 65535, 0, 65507, 1, 0, 65512, 65535, 0, 65511, 0, 0, 65516, 0, 0, 65520, 2, 0, 65513, 2, 0, 65512, 2, 0, 65510, 2, 0, 65506, 2, 0, 65503, 2, 0, 65502, 2, 0, 65503, 0, 0, 65504, 0, 0, 65506, 65535, 0, 65507, 65534, 0, 65509, 65533, 0, 65511, 65534, 0, 65509, 65535, 0, 65508, 65535, 0, 65508, 1, 0, 65501, 2, 0, 65499, 2, 0, 65505, 0, 0, 65511, 65533, 0, 65512, 65532, 0, 65512, 65533, 0, 65513, 65534, 0, 65514, 65535, 0, 65515, 65535, 0, 65515, 65534, 0, 65516, 65534, 0, 65519, 65532, 0, 65520, 65532, 0, 65521, 65533, 0, 65523, 65533, 0, 65524, 65533, 0, 65523, 65532, 0, 65517, 0, 0, 65520, 0, 0, 65522, 0, 0, 65523, 1, 0, 65523, 0, 0, 65524, 0, 0, 65519, 65535, 0, 65518, 65535, 0, 65515, 65533, 0, 65513, 65532, 0, 65514, 65532, 0, 65516, 65533, 0, 65518, 65534, 0, 65519, 65534, 0, 65520, 65534, 0, 65522, 65534, 0, 65523, 65534, 0, 65524, 65535, 0, 65525, 65535, 0, 65526, 65534, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65534, 0, 65531, 65534, 0, 65533, 65533, 0, 65532, 65535, 0, 65531, 0, 0, 65529, 0, 0, 65529, 1, 0, 65532, 1, 0, 65533, 1, 0, 65531, 3, 0, 65530, 5, 0, 65529, 7, 0, 65528, 3, 0, 65526, 2, 0, 65525, 1, 0, 65526, 0, 0, 65530, 7, 0, 65527, 9, 0, 65530, 10, 0, 65528, 11, 0, 65530, 12, 0, 65529, 10, 0, 65528, 7, 0, 65529, 5, 0, 65529, 4, 0, 65530, 4, 0, 65532, 4, 0, 65529, 3, 0, 65528, 2, 0, 65531, 2, 0, 65533, 2, 0, 65535, 1, 0, 65533, 65535, 0, 65534, 65535, 0, 65534, 0, 0, 65535, 0, 0, 65535, 65535, 0, 65535, 65534, 0, 65530, 65530, 0, 65527, 65529, 0, 65525, 65529, 0, 65525, 65528, 0, 65526, 65526, 0, 65529, 65526, 0, 65530, 65526, 0, 65529, 65529, 0, 65529, 65531, 0, 65532, 65530, 0, 65533, 65530, 0, 65534, 65526, 0, 1, 65530, 0, 65535, 65530, 0, 65534, 65530, 0, 3, 65533, 0, 2, 65533, 0, 1, 65533, 0, 3, 65535, 0, 3, 0, 0, 2, 0, 0, 0, 2, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 4, 0, 3, 4, 0, 4, 5, 0, 4, 7, 0, 3, 8, 0, 3, 10, 0, 3, 11, 0, 2, 11, 0, 2, 12, 0, 2, 13, 0, 0, 13, 0, 0, 14, 0, 65535, 14, 0, 65535, 15, 0, 65534, 14, 0, 65533, 14, 0, 65530, 13, 0, 65529, 14, 0, 65527, 14, 0, 65527, 13, 0, 65530, 15, 0, 65531, 14, 0, 65532, 14, 0, 65532, 16, 0, 65529, 16, 0, 65528, 16, 0, 65533, 17, 0, 2, 15, 0, 65535, 16, 0, 65534, 17, 0, 1, 17, 0, 3, 16, 0, 4, 16, 0, 5, 14, 0, 4, 14, 0, 3, 13, 0, 2, 14, 0, 3, 14, 0, 5, 10, 0, 4, 9, 0, 5, 8, 0, 6, 8, 0, 6, 7, 0, 5, 5, 0, 6, 4, 0, 4, 2, 0, 5, 6, 0, 5, 3, 0, 3, 1, 0, 4, 1, 0, 65531, 12, 0, 65529, 8, 0, 65529, 6, 0, 65528, 4, 0, 65530, 9, 0, 65528, 10, 0, 65528, 12, 0, 65529, 12, 0, 65529, 13, 0, 65528, 5, 0, 8, 1, 0, 6, 0, 0, 4, 0, 0, 7, 65535, 0, 3, 65534, 0, 4, 65534, 0, 4, 65533, 0, 2, 65530, 0, 9, 65535, 0, 7, 65534, 0, 5, 65534, 0, 5, 65533, 0, 5, 0, 0, 5, 1, 0, 6, 2, 0, 6, 3, 0, 5, 65535, 0, 3, 3, 0, 2, 2, 0, 5, 4, 0, 5, 11, 0, 5, 13, 0, 6, 14, 0, 6, 9, 0, 7, 9, 0, 8, 9, 0, 6, 6, 0, 7, 6, 0, 7, 5, 0, 9, 5, 0, 9, 4, 0, 7, 2, 0, 11, 3, 0, 11, 2, 0, 9, 0, 0, 12, 0, 0, 11, 0, 0, 10, 65535, 0, 11, 65535, 0, 14, 1, 0, 11, 1, 0, 10, 1, 0, 8, 3, 0, 9, 65531, 0, 14, 65531, 0, 6, 65529, 0, 6, 65528, 0, 6, 65530, 0, 5, 65530, 0, 5, 65529, 0, 4, 65530, 0, 3, 65530, 0, 7, 65529, 0, 7, 65530, 0, 10, 65531, 0, 15, 65532, 0, 16, 65528, 0, 13, 65528, 0, 17, 65532, 0, 17, 65531, 0, 14, 65533, 0, 16, 65530, 0, 18, 1, 0, 16, 0, 0, 17, 0, 0, 16, 65535, 0, 15, 65535, 0, 13, 65535, 0, 12, 65535, 0, 10, 65534, 0, 12, 1, 0, 12, 3, 0, 13, 3, 0, 15, 2, 0, 16, 2, 0, 15, 1, 0, 15, 4, 0, 14, 4, 0, 13, 4, 0, 15, 3, 0, 16, 3, 0, 17, 2, 0, 18, 2, 0, 18, 65534, 0, 19, 65534, 0, 19, 65535, 0, 20, 65535, 0, 23, 0, 0, 22, 2, 0, 23, 1, 0, 22, 1, 0, 20, 3, 0, 19, 2, 0, 18, 3, 0, 18, 4, 0, 18, 5, 0, 19, 5, 0, 19, 4, 0, 23, 4, 0, 24, 3, 0, 24, 4, 0, 26, 3, 0, 26, 2, 0, 25, 2, 0, 27, 2, 0, 28, 2, 0, 30, 2, 0, 30, 1, 0, 31, 1, 0, 32, 2, 0, 32, 3, 0, 28, 4, 0, 26, 4, 0, 31, 4, 0, 32, 4, 0, 32, 65533, 0, 33, 65534, 0, 33, 65535, 0, 34, 65535, 0, 32, 65534, 0, 31, 65534, 0, 30, 65535, 0, 29, 65535, 0, 28, 65535, 0, 27, 65535, 0, 23, 65535, 0, 24, 65535, 0, 19, 1, 0, 8, 65535, 0, 7, 0, 0, 6, 65534, 0, 65520, 65529, 0, 65514, 65529, 0, 65513, 65528, 0, 65517, 65528, 0, 65518, 65528, 0, 65519, 65528, 0, 65520, 65527, 0, 65521, 65527, 0, 65524, 65527, 0, 65523, 65528, 0, 65522, 65528, 0, 65521, 65528, 0, 65521, 65529, 0, 65516, 65528, 0, 65515, 65528, 0, 65511, 65528, 0, 65510, 65528, 0, 65509, 65528, 0, 65509, 65527, 0, 65508, 65527, 0, 65508, 65528, 0, 65509, 65529, 0, 65511, 65529, 0, 65512, 65528, 0, 65518, 65527, 0, 65519, 65527, 0, 65522, 65527, 0, 65523, 65527, 0, 65525, 65527, 0, 65526, 65527, 0, 65527, 65527, 0, 65528, 65527, 0, 65535, 65526, 0, 65534, 65523, 0, 65535, 65523, 0, 65535, 65524, 0, 0, 65524, 0, 1, 65525, 0, 2, 65525, 0, 2, 65526, 0, 3, 65526, 0, 65534, 65524, 0, 65534, 65525, 0, 65533, 65525, 0, 65532, 65525, 0, 65531, 65525, 0, 65530, 65525, 0, 65529, 65525, 0, 65528, 65525, 0, 65527, 65525, 0, 65525, 65524, 0, 65524, 65524, 0, 65522, 65524, 0, 65522, 65525, 0, 65521, 65525, 0, 65518, 65524, 0, 65517, 65524, 0, 65516, 65523, 0, 65507, 65524, 0, 65503, 65525, 0, 65503, 65526, 0, 65502, 65525, 0, 65499, 65524, 0, 65498, 65524, 0, 65495, 65526, 0, 65494, 65526, 0, 65493, 65526, 0, 65492, 65526, 0, 65491, 65525, 0, 65490, 65525, 0, 65490, 65526, 0, 65489, 65526, 0, 8, 65526, 0, 4, 65524, 0, 3, 65524, 0, 9, 65524, 0, 10, 65524, 0, 10, 65525, 0, 11, 65525, 0, 13, 65524, 0, 13, 65525, 0, 14, 65523, 0, 15, 65523, 0, 19, 65524, 0, 19, 65525, 0, 19, 65523, 0, 20, 65523, 0, 20, 65524, 0, 20, 65525, 0, 21, 65525, 0, 21, 65526, 0, 22, 65526, 0, 23, 65526, 0, 24, 65526, 0, 26, 65525, 0, 26, 65524, 0, 25, 65522, 0, 24, 65523, 0, 23, 65523, 0, 22, 65523, 0, 18, 65524, 0, 17, 65524, 0, 12, 65524, 0, 11, 65524, 0, 12, 65525, 0, 14, 65525, 0, 15, 65525, 0, 17, 65525, 0, 17, 65526, 0, 19, 65526, 0, 20, 65526, 0, 19, 65527, 0, 20, 65528, 0, 16, 65527, 0, 31, 65523, 0, 30, 65525, 0, 29, 65525, 0, 65532, 12, 0, 65534, 13, 0, 65535, 12, 0, 1, 12, 0, 65530, 11, 0, 65531, 10, 0, 65533, 11, 0, 65531, 9, 0, 65530, 8, 0, 65530, 6, 0, 65533, 3, 0, 65531, 6, 0, 65515, 2, 0, 65517, 1, 0, 65517, 2, 0, 65519, 2, 0, 65498, 1, 0, 65495, 2, 0, 65497, 3, 0, 65499, 1, 0, 65501, 1, 0, 65504, 1, 0, 65505, 3, 0, 65504, 2, 0, 65496, 2, 0, 65503, 65535, 0, 65498, 65532, 0, 65505, 65535, 0, 65513, 1, 0, 65514, 1, 0, 65521, 2, 0, 65527, 1, 0, 34, 65533, 0, 33, 65532, 0, 33, 65531, 0, 27, 65533, 0, 26, 65533, 0, 33, 3, 0, 33, 2, 0, 33, 4, 0, 30, 4, 0, 29, 4, 0, 21, 4, 0, 20, 2, 0, 65534, 65533, 0, 65535, 65533, 0, 65532, 65534, 0, 65532, 65533, 0, 65531, 65531, 0, 65526, 65532, 0, 65534, 2, 0, 65533, 13, 0, 65532, 9, 0, 65532, 10, 0, 65532, 11, 0, 6, 16, 0, 7, 15, 0, 8, 13, 0, 8, 12, 0, 8, 11, 0, 65530, 17, 0, 1, 15, 0, 3, 17, 0, 65531, 15, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap2" type="GridMap" parent="Enviroment/Terrain3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -470, 0, -7)
+mesh_library = ExtResource("5_vl15e")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65530, 65528, 1048576, 65533, 65534, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_325su")
+
+[node name="Lamp lights" type="Node3D" parent="Enviroment"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lamp lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -481, 3.9, -23)
+light_energy = 2.722
+shadow_enabled = true
+omni_range = 5.289
+omni_attenuation = -1.432
+omni_shadow_mode = 0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Enviroment/Lamp lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -474.3, 3.8, -10)
+light_energy = 2.955
+shadow_enabled = true
+omni_range = 5.011
+omni_attenuation = -1.655
+omni_shadow_mode = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -497, 5.5, 55)
+visible = false
+shape = SubResource("BoxShape3D_k2wvs")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -495, 7, -53)
+shape = SubResource("BoxShape3D_k2wvs")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -647, 5, -6)
+shape = SubResource("BoxShape3D_ks3av")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -340, 5, -2.5)
+shape = SubResource("BoxShape3D_ks3av")
+
+[node name="EasterEgg" type="StaticBody3D" parent="."]
+transform = Transform3D(0.985612, 0.0857808, -0.145643, -0.0759107, -0.545232, -0.834841, -0.151022, 0.833884, -0.530876, -479, 1.65075, 44.0127)
+script = ExtResource("9_gxcpq")
+prompt_msg = "I feel a bit motivated"
+
+[node name="Decal" type="Decal" parent="EasterEgg"]
+transform = Transform3D(0.446447, 2.98023e-08, 1.39698e-09, -7.45058e-09, 0.85305, 5.58794e-09, -1.90921e-08, -1.11759e-08, 0.473978, 0, 0, 0)
+size = Vector3(2, 1.07629, 2)
+texture_albedo = ExtResource("10_o0pwy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EasterEgg"]
+transform = Transform3D(1, -1.49012e-08, 7.45058e-09, -1.49012e-08, 1, -2.98023e-08, -5.21541e-08, 0, 1, 0.0353088, 0.0228577, 0.108955)
+shape = SubResource("BoxShape3D_wgldv")
+
+[node name="motivation" type="AudioStreamPlayer3D" parent="EasterEgg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387729, 0)
+stream = ExtResource("11_o0pwy")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("12_o0pwy")
+
+[node name="DINER" parent="." instance=ExtResource("8_ks3av")]
+transform = Transform3D(-0.999989, 0, -0.00476469, 0, 1, 0, 0.00476469, 0, -0.999989, -481.739, 0.2, 29.0247)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_cts12")
+volume_db = -5.415
+autoplay = true
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -582, 8, 65)
+shape = SubResource("BoxShape3D_cts12")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -379.5, 8, 75)
+shape = SubResource("BoxShape3D_cts12")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -475, 7.5, 93)
+shape = SubResource("BoxShape3D_ir7ep")
+
+[connection signal="interacted" from="EasterEgg" to="EasterEgg" method="_on_interacted"]

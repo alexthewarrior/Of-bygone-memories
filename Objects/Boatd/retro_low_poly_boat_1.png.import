@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://s25hfgcephuv"
+path.s3tc="res://.godot/imported/retro_low_poly_boat_1.png-2daa358c488456d80ad028705942a1eb.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "a65b92f05d3fdf77b35a0389af2db2ab"
+}
+
+[deps]
+
+source_file="res://Objects/Boatd/retro_low_poly_boat_1.png"
+dest_files=["res://.godot/imported/retro_low_poly_boat_1.png-2daa358c488456d80ad028705942a1eb.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Objects/Boatd/retro_low_poly_boat_1.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

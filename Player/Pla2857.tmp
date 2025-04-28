@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://bklpxqva5gpl4"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_hg6hc"]
+[ext_resource type="PackedScene" uid="uid://c3qq3qr3ynupg" path="res://Interaction/interact_ray.tscn" id="2_a51ak"]
+[ext_resource type="Texture2D" uid="uid://igw23cgxdnwm" path="res://Player/UI Images/simple-01.png" id="3_8q8j3"]
+[ext_resource type="Script" path="res://Player/user_interface.gd" id="3_jxhqb"]
+[ext_resource type="Texture2D" uid="uid://cnuv7c0g27gkt" path="res://Player/UI Images/dmg.png" id="4_trktn"]
+[ext_resource type="Texture2D" uid="uid://cmf01l3fisypb" path="res://Player/UI Images/rsz_cross.png" id="6_lwqn2"]
+[ext_resource type="Texture2D" uid="uid://b5ih0tpabjbqp" path="res://Player/UI Images/rsz_cross2.png" id="7_kl4vd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dur45"]
+height = 2.04894
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_admwh"]
+height = 1.2
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hg6hc")
+
+[node name="Standing_Collision_Shape" type="CollisionShape3D" parent="."]
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572507, 0.83765, -0.537297)
+shape = SubResource("CapsuleShape3D_dur45")
+
+[node name="Crouching_Collision_Shape" type="CollisionShape3D" parent="."]
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572507, 0.336065, -0.537297)
+shape = SubResource("CapsuleShape3D_admwh")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.572601, 1.49589, -0.561759)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00887346, -0.0189769, -0.332138)
+
+[node name="InteractRay" parent="Head/Camera3D" instance=ExtResource("2_a51ak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00396228, -0.0298914, 0.140753)
+target_position = Vector3(0, 0, -2)
+collision_mask = 1
+
+[node name="StandUp_RayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.574063, -0.0465519, -0.535269)
+target_position = Vector3(0, 2, 0)
+
+[node name="User Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1162.0
+offset_bottom = 661.0
+script = ExtResource("3_jxhqb")
+
+[node name="CrossHair" type="TextureRect" parent="User Interface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -33.5
+offset_right = 41.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8q8j3")
+expand_mode = 1
+
+[node name="HurtOverlay" type="TextureRect" parent="User Interface"]
+visible = false
+layout_mode = 0
+offset_right = 1184.0
+offset_bottom = 679.0
+texture = ExtResource("4_trktn")
+
+[node name="HealthBar" type="TextureProgressBar" parent="User Interface"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 518.0
+offset_right = 160.0
+offset_bottom = 614.0
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("6_lwqn2")
+texture_progress = ExtResource("7_kl4vd")

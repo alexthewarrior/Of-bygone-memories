@@ -1,0 +1,212 @@
+[gd_scene load_steps=35 format=3 uid="uid://yhudvjobp3gx"]
+
+[ext_resource type="Texture2D" uid="uid://cy83ibjvb3hif" path="res://Levels/Segment 3/Textures/grass_packed_albedo_height.png" id="2_3undf"]
+[ext_resource type="Texture2D" uid="uid://m5fmc0j2c1nh" path="res://Levels/Segment 3/Textures/grass_packed_normal_roughness.png" id="3_atqos"]
+[ext_resource type="PackedScene" uid="uid://cbfxnipudjuu6" path="res://tall_grass.tscn" id="3_x5n56"]
+[ext_resource type="Texture2D" uid="uid://clls2568k7you" path="res://Levels/Segment 3/Textures/asphalt_packed_albedo_height.png" id="4_0bpqo"]
+[ext_resource type="PackedScene" uid="uid://c5tfslntgrtcq" path="res://black_obelisk.tscn" id="4_3undf"]
+[ext_resource type="Texture2D" uid="uid://cadeppmbyfqou" path="res://Levels/Segment 3/Textures/asphalt_packed_normal_roughness.png" id="5_ntsjb"]
+[ext_resource type="PackedScene" uid="uid://0bcnn64nlk6x" path="res://fir_tree.tscn" id="5_rw7ei"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="8_dijni"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="9_623c2"]
+[ext_resource type="PackedScene" uid="uid://ck74qq8nw37xo" path="res://Objects/Car/car1.tscn" id="10_3undf"]
+[ext_resource type="PackedScene" uid="uid://dsrscm4tpmpmq" path="res://Objects/Hospital/ps1_horror_hospital_gurney.glb" id="11_0bpqo"]
+[ext_resource type="PackedScene" uid="uid://b3lpdrwkusxtc" path="res://Objects/Hospital/ps1_style_patient_sheet_with_clipboard.glb" id="12_ntsjb"]
+[ext_resource type="PackedScene" uid="uid://mtg5v8fotg28" path="res://Objects/House/house.tscn" id="13_705a3"]
+[ext_resource type="MeshLibrary" uid="uid://csy204ec2udjc" path="res://black_obelisk.tres" id="14_705a3"]
+[ext_resource type="MeshLibrary" uid="uid://fchjl2nwn43d" path="res://tree.tres" id="15_dijni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gqo6"]
+size = Vector3(110, 10, 151)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5n56"]
+size = Vector3(111, 10, 346)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gj0nq"]
+size = Vector3(110, 10, 349)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wxfv"]
+size = Vector3(35, 10, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3undf"]
+size = Vector3(75, 10, 3)
+
+[sub_resource type="FogMaterial" id="FogMaterial_atqos"]
+density = 0.24
+albedo = Color(0.32414, 1.86507e-07, 0.160091, 1)
+emission = Color(0.304227, 0.0260032, 0.134859, 1)
+edge_fade = 0.649801
+
+[sub_resource type="Gradient" id="Gradient_gj0nq"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6wxfv"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3undf"]
+seamless = true
+color_ramp = SubResource("Gradient_gj0nq")
+noise = SubResource("FastNoiseLite_6wxfv")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_atqos"]
+_shader_parameters = {
+&"blend_sharpness": 0.87,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_3undf"),
+&"vertex_normals_distance": 128.0
+}
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_gj0nq"]
+name = "tall_grass"
+density = 1.43718
+visibility_range = 1000.0
+scene_file = ExtResource("3_x5n56")
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_ntsjb"]
+name = "black_obelisk"
+id = 1
+density = 0.116489
+scene_file = ExtResource("4_3undf")
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_dijni"]
+name = "fir_tree"
+id = 2
+density = 0.02354
+scene_file = ExtResource("5_rw7ei")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_rw7ei"]
+name = "grass_packed_albedo_height"
+albedo_texture = ExtResource("2_3undf")
+normal_texture = ExtResource("3_atqos")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_705a3"]
+name = "asphalt_packed_albedo_height"
+id = 1
+albedo_texture = ExtResource("4_0bpqo")
+normal_texture = ExtResource("5_ntsjb")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_dijni"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_gj0nq"), SubResource("Terrain3DMeshAsset_ntsjb"), SubResource("Terrain3DMeshAsset_dijni")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_rw7ei"), SubResource("Terrain3DTextureAsset_705a3")])
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_623c2"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_6gqo6"]
+sky_material = SubResource("ProceduralSkyMaterial_623c2")
+
+[sub_resource type="Environment" id="Environment_0n3u6"]
+background_mode = 2
+sky = SubResource("Sky_6gqo6")
+tonemap_mode = 3
+glow_enabled = true
+fog_light_color = Color(0.113261, 0.127052, 0.148733, 1)
+fog_density = 0.299
+volumetric_fog_density = 0.15
+volumetric_fog_length = 207.47
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("8_dijni")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -239)
+
+[node name="Area3D" parent="." instance=ExtResource("9_623c2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -201.5)
+visible = false
+to_scene = "uid://c5ho0j2vmf20o"
+
+[node name="Borders" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 5, -207)
+shape = SubResource("BoxShape3D_6gqo6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.5, 5, -302)
+shape = SubResource("BoxShape3D_x5n56")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 5, -529.5)
+shape = SubResource("BoxShape3D_gj0nq")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 5, -627.5)
+shape = SubResource("BoxShape3D_6gqo6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 5, -663.5)
+shape = SubResource("BoxShape3D_6wxfv")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -125.5, 5, -513.5)
+shape = SubResource("BoxShape3D_3undf")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 5, -187.5)
+shape = SubResource("BoxShape3D_6wxfv")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Borders"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 118.5, 5, -317.5)
+shape = SubResource("BoxShape3D_3undf")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 7.5, -320)
+size = Vector3(70, 59, 66)
+shape = 0
+material = SubResource("FogMaterial_atqos")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/Segment 4"
+material = SubResource("Terrain3DMaterial_atqos")
+assets = SubResource("Terrain3DAssets_dijni")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0n3u6")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("10_3undf")]
+transform = Transform3D(-1.30673, 0, 1.10309, 0, 1.848, 0, -1.30673, 0, -1.10309, -76, 2.3, -501)
+
+[node name="Sketchfab_Scene4" parent="." instance=ExtResource("11_0bpqo")]
+transform = Transform3D(1.54, 0, 0, 0, 1.3, 0, 0, 0, 2.04, 83, 1, -319)
+
+[node name="Sketchfab_Scene5" parent="." instance=ExtResource("12_ntsjb")]
+transform = Transform3D(-0.97832, -0.97832, -3.09086e-08, 0, -6.0477e-08, 1, -0.97832, 0.97832, 3.09086e-08, 83, 2.3, -319)
+
+[node name="house" parent="." instance=ExtResource("13_705a3")]
+transform = Transform3D(1.7, 0, 7.10543e-15, 0, 1.52, 0, -7.10543e-15, 0, 1.7, -91, 1, -513)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("14_705a3")
+data = {
+"cells": PackedInt32Array(47, 65371, 1441792, 43, 65369, 1441792, 38, 65370, 1441792, 36, 65374, 1441792, 37, 65379, 1441792, 41, 65382, 1441792, 45, 65381, 1441792, 48, 65379, 1441792, 49, 65375, 1441792)
+}
+
+[node name="GridMap2" type="GridMap" parent="."]
+mesh_library = ExtResource("15_dijni")
+data = {
+"cells": PackedInt32Array(65498, 65278, 1441792, 65493, 65278, 1441792, 65488, 65291, 1441792, 65493, 65291, 1441792, 65493, 65292, 1441792, 65497, 65282, 1441792, 65489, 65280, 1441792, 65486, 65276, 1441792, 65482, 65277, 1441792, 65483, 65282, 1441792, 65483, 65286, 1441792, 65484, 65290, 1441792, 65499, 65285, 1441792, 65496, 65294, 1441792, 65500, 65289, 1441792, 65499, 65293, 1441792, 65501, 65275, 1441792)
+}

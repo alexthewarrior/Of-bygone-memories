@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://bu3p02vueevwm"]
+
+[ext_resource type="Texture2D" uid="uid://cy83ibjvb3hif" path="res://Levels/Segment 3/Textures/grass_packed_albedo_height.png" id="1_a85a8"]
+[ext_resource type="Texture2D" uid="uid://m5fmc0j2c1nh" path="res://Levels/Segment 3/Textures/grass_packed_normal_roughness.png" id="2_m7tx1"]
+[ext_resource type="Texture2D" uid="uid://clls2568k7you" path="res://Levels/Segment 3/Textures/asphalt_packed_albedo_height.png" id="3_4ebvw"]
+[ext_resource type="Texture2D" uid="uid://cadeppmbyfqou" path="res://Levels/Segment 3/Textures/asphalt_packed_normal_roughness.png" id="4_3d52q"]
+[ext_resource type="MeshLibrary" uid="uid://c0f0ppei38nr5" path="res://Objects/FirTree.tres" id="5_v82bj"]
+
+[sub_resource type="Gradient" id="Gradient_10mou"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_spdmc"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3j5ha"]
+seamless = true
+color_ramp = SubResource("Gradient_10mou")
+noise = SubResource("FastNoiseLite_spdmc")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_t5iu1"]
+_shader_parameters = {
+&"blend_sharpness": 0.87,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_3j5ha"),
+&"vertex_normals_distance": 128.0
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1q5l"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 85.0
+distance_fade_max_distance = 75.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_800bo"]
+material_override = SubResource("StandardMaterial3D_d1q5l")
+generated_type = 1
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_uluru"]
+name = "grass_packed_albedo_height"
+albedo_texture = ExtResource("1_a85a8")
+normal_texture = ExtResource("2_m7tx1")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_7ou1a"]
+name = "asphalt_packed_albedo_height"
+id = 1
+albedo_texture = ExtResource("3_4ebvw")
+normal_texture = ExtResource("4_3d52q")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_tikss"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_800bo")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_uluru"), SubResource("Terrain3DTextureAsset_7ou1a")])
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vqekg"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 4.76
+
+[sub_resource type="Sky" id="Sky_0g5la"]
+sky_material = SubResource("ProceduralSkyMaterial_vqekg")
+
+[sub_resource type="Environment" id="Environment_v3154"]
+background_mode = 2
+sky = SubResource("Sky_0g5la")
+tonemap_mode = 3
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.286237, 0.312849, 0.354682, 1)
+fog_density = 0.1948
+volumetric_fog_density = 0.1
+volumetric_fog_length = 115.03
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/MainMenu"
+material = SubResource("Terrain3DMaterial_t5iu1")
+assets = SubResource("Terrain3DAssets_tikss")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v3154")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("5_v82bj")
+data = {
+"cells": PackedInt32Array(-5, 13, 0, -3, 13, 0, -2, 13, 0, -1, 13, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0, -6, 17, 0, -5, 17, 0, -4, 17, 0, -3, 17, 0, -2, 17, 0, -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -4, 13, 0, -7, 13, 0, -8, 17, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)

@@ -1,0 +1,44 @@
+[gd_resource type="Terrain3DAssets" load_steps=12 format=3 uid="uid://da7yfqe0a615v"]
+
+[ext_resource type="Texture2D" uid="uid://buqundgq8l01g" path="res://Levels/Segment 4/Textures/dry_packed_albedo_height.png" id="1_w5uh7"]
+[ext_resource type="Texture2D" uid="uid://c3uo82rojdfel" path="res://Levels/Segment 4/Textures/dry_packed_normal_roughness.png" id="2_hto84"]
+[ext_resource type="Texture2D" uid="uid://db6l1vgb203lb" path="res://Levels/Segment 4/Textures/sandy_packed_albedo_height.png" id="3_rv5rs"]
+[ext_resource type="Texture2D" uid="uid://be2racko81ffh" path="res://Levels/Segment 4/Textures/sandy_packed_normal_roughness.png" id="4_tm21k"]
+[ext_resource type="Texture2D" uid="uid://clls2568k7you" path="res://Levels/Segment 3/Textures/asphalt_packed_albedo_height.png" id="5_sqsq7"]
+[ext_resource type="Texture2D" uid="uid://cadeppmbyfqou" path="res://Levels/Segment 3/Textures/asphalt_packed_normal_roughness.png" id="6_uc8fb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5uh7"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 85.0
+distance_fade_max_distance = 75.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_hto84"]
+material_override = SubResource("StandardMaterial3D_w5uh7")
+generated_type = 1
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_8lgcr"]
+name = "dry_packed_albedo_height"
+albedo_texture = ExtResource("1_w5uh7")
+normal_texture = ExtResource("2_hto84")
+uv_scale = 0.038
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_003lu"]
+name = "sandy_packed_albedo_height"
+id = 1
+albedo_texture = ExtResource("3_rv5rs")
+normal_texture = ExtResource("4_tm21k")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_o1cfe"]
+name = "asphalt_packed_albedo_height"
+id = 2
+albedo_texture = ExtResource("5_sqsq7")
+normal_texture = ExtResource("6_uc8fb")
+
+[resource]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_hto84")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_8lgcr"), SubResource("Terrain3DTextureAsset_003lu"), SubResource("Terrain3DTextureAsset_o1cfe")])

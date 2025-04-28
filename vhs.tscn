@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2udlk8edmfs"]
+
+[ext_resource type="Shader" uid="uid://d4cw2vkkqllny" path="res://Player/vhs.gdshader" id="1_o1qi6"]
+[ext_resource type="Texture2D" uid="uid://phvnwvpteiy5" path="res://Textures/vhs.png" id="2_mx6bf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1qi6"]
+shader = ExtResource("1_o1qi6")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 3
+shader_parameter/crease_noise = 0.8
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.1
+shader_parameter/tape_crease_intensity = 0.0
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 1.0
+shader_parameter/tape_crease_discoloration = 1.6
+shader_parameter/bottom_border_thickness = 12.1
+shader_parameter/bottom_border_jitter = 15.5
+shader_parameter/noise_intensity = 0.4
+shader_parameter/noise_texture = ExtResource("2_mx6bf")
+
+[node name="VHS" type="ColorRect"]
+material = SubResource("ShaderMaterial_o1qi6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

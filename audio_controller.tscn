@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm8rbfcneajor"]
+
+[ext_resource type="Script" uid="uid://cofqql4fpq3lm" path="res://global_static.gd" id="1_w1gap"]
+[ext_resource type="AudioStream" uid="uid://ci1ugudklop7j" path="res://Sound/SFX/11L-static_vinyl-43493640.wav" id="2_qpnks"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_w1gap")
+
+[node name="static_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qpnks")
+volume_db = -9.1
+autoplay = true
+bus = &"SFX"

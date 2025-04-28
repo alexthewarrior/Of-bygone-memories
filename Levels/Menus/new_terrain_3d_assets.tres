@@ -1,0 +1,28 @@
+[gd_resource type="Terrain3DAssets" load_steps=9 format=3 uid="uid://dmgg0k2s3em4j"]
+
+[ext_resource type="PackedScene" uid="uid://0bcnn64nlk6x" path="res://fir_tree.tscn" id="1_hwoci"]
+[ext_resource type="Texture2D" uid="uid://cy83ibjvb3hif" path="res://Levels/Segment 3/Textures/grass_packed_albedo_height.png" id="2_j2fsy"]
+[ext_resource type="Texture2D" uid="uid://m5fmc0j2c1nh" path="res://Levels/Segment 3/Textures/grass_packed_normal_roughness.png" id="3_0h4gu"]
+[ext_resource type="Texture2D" uid="uid://clls2568k7you" path="res://Levels/Segment 3/Textures/asphalt_packed_albedo_height.png" id="4_oqaa8"]
+[ext_resource type="Texture2D" uid="uid://cadeppmbyfqou" path="res://Levels/Segment 3/Textures/asphalt_packed_normal_roughness.png" id="5_rh5vs"]
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_j4e20"]
+name = "fir_tree"
+density = 0.02354
+visibility_range = 308.0
+scene_file = ExtResource("1_hwoci")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ncdyt"]
+name = "grass_packed_albedo_height"
+albedo_texture = ExtResource("2_j2fsy")
+normal_texture = ExtResource("3_0h4gu")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ge7st"]
+name = "asphalt_packed_albedo_height"
+id = 1
+albedo_texture = ExtResource("4_oqaa8")
+normal_texture = ExtResource("5_rh5vs")
+
+[resource]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_j4e20")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_ncdyt"), SubResource("Terrain3DTextureAsset_ge7st")])

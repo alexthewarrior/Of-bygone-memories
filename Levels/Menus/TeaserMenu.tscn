@@ -1,0 +1,244 @@
+[gd_scene load_steps=30 format=3 uid="uid://cnjs8qm2j507h"]
+
+[ext_resource type="Script" uid="uid://cbhesgom7erha" path="res://Levels/Menus/bg.gd" id="1_ln48w"]
+[ext_resource type="Terrain3DMaterial" uid="uid://oue28fibrxxp" path="res://Levels/Segment 7/new_terrain_3d_material.tres" id="2_f1hxp"]
+[ext_resource type="Terrain3DAssets" uid="uid://bbh58eurth5xx" path="res://Levels/Segment 7/new_terrain_3d_assets.tres" id="3_ln48w"]
+[ext_resource type="Script" uid="uid://dtrdaoljlmotg" path="res://Levels/Menus/teaser.gd" id="4_f1hxp"]
+[ext_resource type="Shader" uid="uid://beievlntjdopy" path="res://Scripts/water.gdshader" id="4_ln48w"]
+[ext_resource type="Texture2D" uid="uid://b31rd88mao3nf" path="res://Textures/vein 5 - 512x512.png" id="5_gwwt4"]
+[ext_resource type="PackedScene" uid="uid://c2udlk8edmfs" path="res://vhs.tscn" id="8_ln48w"]
+[ext_resource type="FontFile" uid="uid://b408igj3ynf03" path="res://Futura Std Light.otf" id="8_yur8l"]
+[ext_resource type="AudioStream" uid="uid://c7ge1n6k8cdyv" path="res://Sound/Music/standchen.wav" id="9_vg3yr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_18ukk"]
+size = Vector2(1000, 1000)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwwt4"]
+render_priority = 0
+shader = ExtResource("4_ln48w")
+shader_parameter/albedo = Color(0.00569999, 0.0548466, 0.19, 1)
+shader_parameter/noise_texture = ExtResource("5_gwwt4")
+shader_parameter/scroll_speed1 = Vector2(0.505, 0.56)
+shader_parameter/scroll_speed2 = Vector2(-0.46, 0)
+shader_parameter/blend_factor = 0.5
+shader_parameter/scale1 = Vector2(1, 1)
+shader_parameter/scale2 = Vector2(1, 1)
+shader_parameter/wave_strength = 0.16
+shader_parameter/wave_scale = 0.156
+shader_parameter/pixelation_level = 68
+shader_parameter/FoamSize = 0.215
+shader_parameter/WaterOpacity = 1.0
+shader_parameter/FoamGlowIntensity = 0.62
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18ukk"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sl6cg"]
+material = SubResource("StandardMaterial3D_18ukk")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vg3yr"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0.132245, 0.0118687, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+ground_energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_you82"]
+sky_material = SubResource("ProceduralSkyMaterial_vg3yr")
+
+[sub_resource type="Environment" id="Environment_8wmb7"]
+background_mode = 2
+background_energy_multiplier = 10.56
+sky = SubResource("Sky_you82")
+tonemap_mode = 3
+glow_enabled = true
+fog_light_color = Color(0.232896, 0.0603728, 0.0322197, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.605274, 0.605274, 0.605274, 1)
+volumetric_fog_length = 44.22
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f1hxp"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 8.28
+dof_blur_far_transition = 9.0
+dof_blur_amount = 0.15
+
+[sub_resource type="Compositor" id="Compositor_ln48w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiy7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h7a2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qoqlk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwfq2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r1g0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqjrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2xy7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fimr5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7cqb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afec1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31qfy"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.90122, -0.433276, -0.0086681, -0.433015, 0.899517, 0.0580156, -0.0173397, 0.0560383, -0.998278, -3, 10, -34.6)
+light_color = Color(0.982238, 0.812835, 0.438778, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="BG" type="Node3D" parent="."]
+script = ExtResource("1_ln48w")
+
+[node name="Terrain3D" type="Terrain3D" parent="BG"]
+data_directory = "res://Levels/Segment 7"
+material = ExtResource("2_f1hxp")
+assets = ExtResource("3_ln48w")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BG/Terrain3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 506)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_18ukk")
+surface_material_override/0 = SubResource("ShaderMaterial_gwwt4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="BG/Terrain3D"]
+transform = Transform3D(-1, 8.74228e-08, -1.22284e-14, 0, -4.37114e-08, -3.2, -8.74228e-08, -1, 1.39876e-07, -7, 9, 234)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_sl6cg")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="BG/Terrain3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, -1.52466e-20, 0, 1, -1.52767e-13, -2.11758e-22, 0, 0.3125, 0, 1, -0.3125)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_attenuation = 0.87
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BG/Terrain3D"]
+environment = SubResource("Environment_8wmb7")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BG"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="BG/SubViewportContainer"]
+handle_input_locally = false
+msaa_3d = 3
+use_taa = true
+use_debanding = true
+use_occlusion_culling = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="BG/SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.7, 21.4, 145.5)
+keep_aspect = 0
+attributes = SubResource("CameraAttributesPractical_f1hxp")
+compositor = SubResource("Compositor_ln48w")
+current = true
+fov = 98.8
+near = 0.097
+far = 262.24
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_f1hxp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_yur8l")
+theme_override_font_sizes/font_size = 40
+text = "To be continued in Chapter 2: Broken memories"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Return" type="Button" parent="Menu/MarginContainer/VBoxContainer/VBoxContainer" groups=["Button"]]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_yur8l")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eiy7p")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_h7a2f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoqlk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iwfq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7r1g0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cqjrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e2xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fimr5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7cqb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_afec1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31qfy")
+text = "Main Menu
+"
+
+[node name="Quit" type="Button" parent="Menu/MarginContainer/VBoxContainer/VBoxContainer" groups=["Button"]]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("8_yur8l")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eiy7p")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_h7a2f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoqlk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iwfq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7r1g0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cqjrg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e2xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fimr5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7cqb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_afec1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31qfy")
+text = "Quit
+"
+
+[node name="VHS" parent="." instance=ExtResource("8_ln48w")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vg3yr")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="ready" from="BG/Terrain3D" to="BG" method="_on_terrain_3d_ready"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/VBoxContainer/Return" to="Menu" method="_on_return_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/VBoxContainer/Quit" to="Menu" method="_on_quit_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://srp3dp86figh"]
+
+[ext_resource type="PackedScene" uid="uid://edi3bivce4wy" path="res://Objects/Car/psx_style_pontiac_ventura_1977s.glb" id="1_8p3fx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3q6n"]
+size = Vector3(3.4, 1.9, 9.1)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_8p3fx")]
+
+[node name="car_M_car_0" parent="Sketchfab_model/96751eea4adb44de929cfaf1dc0f273c_fbx/RootNode/car" index="0"]
+cast_shadow = 0
+
+[node name="car_M_Wheels_0" parent="Sketchfab_model/96751eea4adb44de929cfaf1dc0f273c_fbx/RootNode/car" index="1"]
+cast_shadow = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 1.45, -0.15)
+shape = SubResource("BoxShape3D_h3q6n")

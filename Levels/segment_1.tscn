@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://cs75ir06bfxqu"]
+
+[ext_resource type="Texture2D" uid="uid://c2q2ne43jpcxg" path="res://Objects/textures/road.jpg" id="1_b6twe"]
+[ext_resource type="Texture2D" uid="uid://ci7e4q12duyof" path="res://Objects/textures/road_n.jpg" id="2_ilx1h"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="3_vn3ul"]
+[ext_resource type="Texture2D" uid="uid://c1bvcce7c3x0g" path="res://Objects/textures/grass.jpg" id="4_xrb5r"]
+[ext_resource type="Texture2D" uid="uid://b7w3p0wks15xw" path="res://Objects/textures/grass_n.jpg" id="5_bvg07"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfy0e"]
+albedo_texture = ExtResource("1_b6twe")
+normal_enabled = true
+normal_texture = ExtResource("2_ilx1h")
+uv1_scale = Vector3(2, 500, 1)
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fdj0x"]
+material = SubResource("StandardMaterial3D_mfy0e")
+size = Vector2(6, 1000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kcb3g"]
+data = PackedVector3Array(1, 0, 500, -1, 0, 500, 1, 0, -500, -1, 0, 500, -1, 0, -500, 1, 0, -500)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cxqhw"]
+data = PackedVector3Array(3, 0, 500, -3, 0, 500, 3, 0, -500, -3, 0, 500, -3, 0, -500, 3, 0, -500)
+
+[sub_resource type="Sky" id="Sky_ixsel"]
+
+[sub_resource type="Environment" id="Environment_f0g34"]
+background_mode = 2
+sky = SubResource("Sky_ixsel")
+tonemap_mode = 2
+glow_enabled = true
+fog_height_density = 2.3762
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cx81j"]
+albedo_texture = ExtResource("4_xrb5r")
+normal_enabled = true
+normal_texture = ExtResource("5_bvg07")
+uv1_scale = Vector3(200, 100, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o1utk"]
+material = SubResource("StandardMaterial3D_cx81j")
+size = Vector2(500, 1000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ac8x3"]
+data = PackedVector3Array(250, 0, 500, -250, 0, 500, 250, 0, -500, -250, 0, 500, -250, 0, -500, 250, 0, -500)
+
+[node name="Segment 1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="road" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.304642, 0.1, 0)
+mesh = SubResource("PlaneMesh_fdj0x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="road/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kcb3g")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="road/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_cxqhw")
+
+[node name="Player" parent="." instance=ExtResource("3_vn3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.534378, 0.12155, 463.824)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f0g34")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.88626, 0.463188, 0, -0.463188, -0.88626, 254, 3.45261, 0)
+
+[node name="grass 1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131256, 0, 0)
+mesh = SubResource("PlaneMesh_o1utk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="grass 1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grass 1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ac8x3")

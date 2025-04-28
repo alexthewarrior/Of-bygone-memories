@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://i2iwifunc2sn"]
+
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="1_yfabm"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="2_lhc3c"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e2ain"]
+size = Vector2(5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ne7a"]
+size = Vector3(5, 0.15332, 5)
+
+[node name="level2" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_e2ain")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0408646, -0.00565338)
+shape = SubResource("BoxShape3D_2ne7a")
+
+[node name="Player" parent="." instance=ExtResource("1_yfabm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.461593, 0.745189, 0.596647)
+
+[node name="Area3D" parent="." instance=ExtResource("2_lhc3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99128, 0.703255, 0)

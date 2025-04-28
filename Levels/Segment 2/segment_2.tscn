@@ -1,0 +1,170 @@
+[gd_scene load_steps=28 format=3 uid="uid://d4nis02k1nc0e"]
+
+[ext_resource type="PackedScene" uid="uid://0bcnn64nlk6x" path="res://fir_tree.tscn" id="1_rw34k"]
+[ext_resource type="Texture2D" uid="uid://cdl0rxqos7syt" path="res://Levels/Segment 2/Textures/grass_packed_albedo_height.png" id="1_t6dbw"]
+[ext_resource type="PackedScene" uid="uid://cbfxnipudjuu6" path="res://tall_grass.tscn" id="2_2hhij"]
+[ext_resource type="Texture2D" uid="uid://t15ndrlihrnj" path="res://Levels/Segment 2/Textures/grass_packed_normal_roughness.png" id="2_v8ifo"]
+[ext_resource type="Texture2D" uid="uid://b1iy2jac0cnu0" path="res://Levels/Segment 2/Textures/asphalt_packed_albedo_height.png" id="3_rw34k"]
+[ext_resource type="Texture2D" uid="uid://j5q85hqyyfqn" path="res://Levels/Segment 2/Textures/asphalt_packed_normal_roughness.png" id="4_2hhij"]
+[ext_resource type="Texture2D" uid="uid://dtr23lhbu0j4w" path="res://Levels/Segment 2/Textures/path_packed_albedo_height.png" id="5_6el8p"]
+[ext_resource type="Texture2D" uid="uid://pfojebb0v2vg" path="res://Levels/Segment 2/Textures/path_packed_normal_roughness.png" id="6_og5op"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="7_pxnsw"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="9_6el8p"]
+[ext_resource type="AudioStream" uid="uid://bnblt7pxop433" path="res://Sound/SFX/midnight.wav" id="11_6el8p"]
+
+[sub_resource type="Gradient" id="Gradient_rtbwu"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ugqq5"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e1iny"]
+seamless = true
+color_ramp = SubResource("Gradient_rtbwu")
+noise = SubResource("FastNoiseLite_ugqq5")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_ey67a"]
+_shader_parameters = {
+&"blend_sharpness": 0.87,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_e1iny"),
+&"vertex_normals_distance": 128.0
+}
+world_background = 0
+texture_filtering = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srxv4"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 85.0
+distance_fade_max_distance = 75.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_wihjq"]
+material_override = SubResource("StandardMaterial3D_srxv4")
+generated_type = 1
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_6el8p"]
+name = "fir_tree"
+id = 1
+density = 0.02354
+visibility_range = 2608.8
+scene_file = ExtResource("1_rw34k")
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_og5op"]
+name = "tall_grass"
+id = 2
+density = 1.43718
+visibility_range = 752.75
+cast_shadows = 0
+scene_file = ExtResource("2_2hhij")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gnnd5"]
+name = "grass_packed_albedo_height"
+albedo_texture = ExtResource("1_t6dbw")
+normal_texture = ExtResource("2_v8ifo")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_g87j0"]
+name = "asphalt_packed_albedo_height"
+id = 1
+albedo_texture = ExtResource("3_rw34k")
+normal_texture = ExtResource("4_2hhij")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_4vhi6"]
+name = "path_packed_albedo_height"
+id = 2
+albedo_texture = ExtResource("5_6el8p")
+normal_texture = ExtResource("6_og5op")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1xdx3"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_wihjq"), SubResource("Terrain3DMeshAsset_6el8p"), SubResource("Terrain3DMeshAsset_og5op")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gnnd5"), SubResource("Terrain3DTextureAsset_g87j0"), SubResource("Terrain3DTextureAsset_4vhi6")])
+
+[sub_resource type="Sky" id="Sky_6el8p"]
+
+[sub_resource type="Environment" id="Environment_og5op"]
+background_mode = 2
+background_energy_multiplier = 0.44
+sky = SubResource("Sky_6el8p")
+ambient_light_source = 3
+ambient_light_energy = 0.0
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.0484558, 0.0569966, 0.0704248, 1)
+fog_light_energy = 1.8
+fog_density = 0.1173
+fog_sky_affect = 0.799
+volumetric_fog_density = 0.1729
+volumetric_fog_emission_energy = 2.65
+volumetric_fog_length = 216.4
+volumetric_fog_sky_affect = 0.14
+adjustment_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxnsw"]
+size = Vector3(927, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gnnd5"]
+size = Vector3(1, 9, 49)
+
+[node name="Segment 2" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/Segment 2"
+material = SubResource("Terrain3DMaterial_ey67a")
+assets = SubResource("Terrain3DAssets_1xdx3")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("7_pxnsw")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -249, 0, -2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_og5op")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 170.5, 3.57628e-07, 11.4995)
+shape = SubResource("BoxShape3D_pxnsw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 170.5, 3.57628e-07, -13.5005)
+shape = SubResource("BoxShape3D_pxnsw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270, 2, 1)
+shape = SubResource("BoxShape3D_gnnd5")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342, 4, 1)
+shape = SubResource("BoxShape3D_gnnd5")
+
+[node name="Area3D" parent="." instance=ExtResource("9_6el8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 336, 1, 0)
+visible = false
+to_scene = "uid://cwol10jpjmigp"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_6el8p")
+volume_db = -5.415
+autoplay = true

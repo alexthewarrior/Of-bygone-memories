@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://boj2reoddaqof"]
+
+[ext_resource type="Terrain3DMaterial" uid="uid://c1ceq6x26gsyq" path="res://Levels/Segment 5/new_terrain_3d_material.tres" id="1_f38e0"]
+[ext_resource type="Terrain3DAssets" uid="uid://da7yfqe0a615v" path="res://Levels/Segment 5/new_terrain_3d_assets.tres" id="2_dikh7"]
+[ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="3_bw4vf"]
+[ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="4_twnme"]
+[ext_resource type="PackedScene" uid="uid://ddqcb8fi2jkyw" path="res://Objects/Grave/grave.tscn" id="5_dikh7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f38e0"]
+size = Vector3(927, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dikh7"]
+size = Vector3(927, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bw4vf"]
+size = Vector3(1, 9, 49)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twnme"]
+size = Vector3(1, 9, 49)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a7egf"]
+sky_top_color = Color(0.0579088, 0.0784697, 0.107062, 1)
+sky_horizon_color = Color(0.00010838, 0.000114441, 0.000124403, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_f38e0"]
+sky_material = SubResource("ProceduralSkyMaterial_a7egf")
+
+[sub_resource type="Environment" id="Environment_vv45t"]
+background_mode = 2
+background_energy_multiplier = 3.0
+sky = SubResource("Sky_f38e0")
+tonemap_mode = 3
+glow_enabled = true
+fog_light_color = Color(0.113261, 0.127052, 0.148733, 1)
+fog_density = 0.299
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.310364, 0.207438, 0.047638, 1)
+volumetric_fog_length = 207.47
+adjustment_enabled = true
+adjustment_brightness = 1.4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://Levels/Segment 5"
+material = ExtResource("1_f38e0")
+assets = ExtResource("2_dikh7")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("3_bw4vf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69, 0.1, 0)
+
+[node name="Area3D" parent="." instance=ExtResource("4_twnme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.5, 1, 0)
+visible = false
+to_scene = "uid://xiaonebfs4jx"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 89.5, 3.57628e-07, 11.4995)
+shape = SubResource("BoxShape3D_f38e0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 170.5, 3.57628e-07, -9.5005)
+shape = SubResource("BoxShape3D_dikh7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 2, 1)
+shape = SubResource("BoxShape3D_bw4vf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240, 4, 1)
+shape = SubResource("BoxShape3D_twnme")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vv45t")
+
+[node name="Sketchfab_Scene3" parent="." instance=ExtResource("5_dikh7")]
+transform = Transform3D(-2.04, 0, 1.03316e-07, 0, 2.7216, 0, -2.08381e-07, 0, -1, -167.714, -0.0228472, -25.6177)
