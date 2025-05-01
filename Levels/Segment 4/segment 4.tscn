@@ -122,6 +122,7 @@ tonemap_mode = 3
 glow_enabled = true
 fog_light_color = Color(0.113261, 0.127052, 0.148733, 1)
 fog_density = 0.299
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.15
 volumetric_fog_length = 207.47
 adjustment_enabled = true
@@ -130,7 +131,7 @@ adjustment_brightness = 1.4
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("8_dijni")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -239)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -650)
 
 [node name="Area3D" parent="." instance=ExtResource("9_623c2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -201.5)

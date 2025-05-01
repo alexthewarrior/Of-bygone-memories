@@ -41,7 +41,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f1hsa")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_14xnp"]
-size = Vector3(3, 5, 3)
+size = Vector3(3, 6, 3)
 
 [node name="black_obelisk" instance=ExtResource("1_268og")]
 
@@ -51,5 +51,5 @@ mesh = SubResource("ArrayMesh_268og")
 [node name="StaticBody3D" type="StaticBody3D" parent="Cone" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cone/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 0)
 shape = SubResource("BoxShape3D_14xnp")

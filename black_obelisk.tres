@@ -51,14 +51,14 @@ data = {
 image = SubResource("Image_f1hsa")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_14xnp"]
-size = Vector3(3, 5, 3)
+size = Vector3(3, 6, 3)
 
 [resource]
 item/0/name = "Cone"
 item/0/mesh = SubResource("ArrayMesh_u1cwv")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
-item/0/shapes = [SubResource("BoxShape3D_14xnp"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)]
+item/0/shapes = [SubResource("BoxShape3D_14xnp"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9, 0)]
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_e7gtp")
