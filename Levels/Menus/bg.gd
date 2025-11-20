@@ -9,3 +9,7 @@ func _on_terrain_3d_ready() -> void:
 
 func _on_quit_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_tutorial_1_pressed() -> void:
+	pass # Replace with function body.

@@ -32,7 +32,6 @@ class_name Player
 @onready var touching_ground: RayCast3D = $TouchingGround
 @onready var ui = $UI
 @onready var camera: Camera3D = $Head/Camera3D
-@onready var walking_sound: AudioStreamPlayer = $Sounds/walking_sound
 @onready var flashlight_sound: AudioStreamPlayer = $Sounds/flashlight_sound
 
 

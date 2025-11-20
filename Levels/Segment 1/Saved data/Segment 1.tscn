@@ -1,18 +1,21 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3i55yw3e0ewo"]
+[gd_scene load_steps=28 format=3 uid="uid://c3i55yw3e0ewo"]
 
+[ext_resource type="Script" uid="uid://ceapocrqj6fdu" path="res://Levels/Segment 1/Saved data/segment_1.gd" id="1_ir7ep"]
 [ext_resource type="Terrain3DMaterial" uid="uid://b7hwjt0nvfo3" path="res://Levels/Segment 1/Saved data/new_terrain_3d_material.tres" id="1_sk2h8"]
 [ext_resource type="Terrain3DAssets" uid="uid://2sjmqmwr6bjy" path="res://Levels/Segment 1/Saved data/new_terrain_3d_assets.tres" id="2_mm5q3"]
 [ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="3_g7n40"]
 [ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="3_mm5q3"]
 [ext_resource type="MeshLibrary" uid="uid://c0f0ppei38nr5" path="res://Objects/FirTree.tres" id="4_g7n40"]
-[ext_resource type="MeshLibrary" uid="uid://dddev3yqoypqr" path="res://Objects/Lamp1.tres" id="5_vl15e"]
 [ext_resource type="Texture2D" uid="uid://duespcee1hakd" path="res://Textures/night sky.jpg" id="7_17apl"]
+[ext_resource type="MeshLibrary" uid="uid://qmiww2ebekyn" path="res://Objects/Lamp/lamp.tres" id="7_tuw6a"]
 [ext_resource type="PackedScene" uid="uid://22tkohb6q3rr" path="res://Objects/diner/diner.tscn" id="8_ks3av"]
 [ext_resource type="Script" uid="uid://bbea5bhblahi5" path="res://Levels/vergil.gd" id="9_gxcpq"]
 [ext_resource type="Texture2D" uid="uid://v03b2odivbvf" path="res://easter1.jpg" id="10_o0pwy"]
 [ext_resource type="AudioStream" uid="uid://d0vc27dl47rsk" path="res://Sound/SFX/wheersypurmotivation.wav" id="11_o0pwy"]
 [ext_resource type="ArrayOccluder3D" uid="uid://ydykp0xx71i0" path="res://Levels/Segment 1/Saved data/Segment 1.occ" id="12_o0pwy"]
 [ext_resource type="AudioStream" uid="uid://bnblt7pxop433" path="res://Sound/SFX/midnight.wav" id="13_cts12"]
+[ext_resource type="PackedScene" uid="uid://83puk66x17j4" path="res://Scripts/task_trigger.tscn" id="15_wgldv"]
+[ext_resource type="PackedScene" uid="uid://cwe4fd1p0tnau" path="res://Scripts/dialogue_trigger.tscn" id="16_tuw6a"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vl15e"]
 panorama = ExtResource("7_17apl")
@@ -25,8 +28,17 @@ sky_material = SubResource("PanoramaSkyMaterial_vl15e")
 background_mode = 2
 background_energy_multiplier = 0.0
 sky = SubResource("Sky_ks3av")
-ambient_light_energy = 0.0
+ambient_light_energy = 1.25
 tonemap_mode = 3
+ssao_radius = 1.08
+ssao_intensity = 1.14
+ssil_radius = 5.78
+ssil_intensity = 5.93
+ssil_sharpness = 1.0
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.13
+sdfgi_energy = 0.49
+glow_enabled = true
 fog_light_color = Color(0.0712421, 0.0816423, 0.0979939, 1)
 fog_light_energy = 1.02
 fog_density = 0.1462
@@ -50,7 +62,17 @@ size = Vector3(129, 15, 107)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ir7ep"]
 size = Vector3(82, 14, 15)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tuw6a"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6xiif"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eblmg"]
+size = Vector3(1, 2, 1)
+
 [node name="Segment 1" type="Node3D"]
+script = ExtResource("1_ir7ep")
 
 [node name="Player" parent="." instance=ExtResource("3_g7n40")]
 transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, -639.9, -0.1, -5.5)
@@ -81,7 +103,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="GridMap2" type="GridMap" parent="Enviroment/Terrain3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -470, 0, -7)
-mesh_library = ExtResource("5_vl15e")
+mesh_library = ExtResource("7_tuw6a")
 cell_center_y = false
 data = {
 "cells": PackedInt32Array(65530, 65528, 1048576, 65533, 65534, 0)
@@ -94,20 +116,23 @@ environment = SubResource("Environment_325su")
 [node name="Lamp lights" type="Node3D" parent="Enviroment"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lamp lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -481, 3.9, -23)
-light_energy = 2.722
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -481, 3.9, -22.7)
+light_energy = 1.65
+light_indirect_energy = 2.761
+light_size = 0.11
+light_specular = 2.414
 shadow_enabled = true
-omni_range = 5.289
-omni_attenuation = -1.432
-omni_shadow_mode = 0
+shadow_bias = 0.7
+shadow_normal_bias = 1.096
+shadow_blur = 1.478
+omni_range = 5.609
+omni_attenuation = -0.419
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Enviroment/Lamp lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -474.3, 3.8, -10)
-light_energy = 2.955
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, -474.3, 3.8, -10)
+light_energy = 2.802
 shadow_enabled = true
-omni_range = 5.011
-omni_attenuation = -1.655
-omni_shadow_mode = 0
+omni_attenuation = -0.148
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -152,6 +177,14 @@ occluder = ExtResource("12_o0pwy")
 [node name="DINER" parent="." instance=ExtResource("8_ks3av")]
 transform = Transform3D(-0.999989, 0, -0.00476469, 0, 1, 0, 0.00476469, 0, -0.999989, -481.739, 0.2, 29.0247)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="DINER"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02396, 6, 4.98088)
+light_color = Color(1, 0.534731, 0.526139, 1)
+light_energy = 5.825
+light_volumetric_fog_energy = 1.153
+omni_range = 10.828
+omni_attenuation = 1.005
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_cts12")
 volume_db = -5.415
@@ -171,4 +204,71 @@ shape = SubResource("BoxShape3D_cts12")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -475, 7.5, 93)
 shape = SubResource("BoxShape3D_ir7ep")
 
+[node name="Task Trigger" parent="." instance=ExtResource("15_wgldv")]
+transform = Transform3D(1.39091e-08, 0, -1, 0, 1, 0, 1, 0, 1.39091e-08, -503, 1, -22)
+task = "Investigate the diverging the path"
+
+[node name="CollisionShape3D" parent="Task Trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -20)
+
+[node name="Task Trigger2" parent="." instance=ExtResource("15_wgldv")]
+transform = Transform3D(-1.58933e-08, 0, -1, 0, 1, 0, 1, 0, -1.58933e-08, -483, 1, 6)
+task = "Enter the diner"
+
+[node name="CollisionShape3D" parent="Task Trigger2" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
+
+[node name="Task Trigger3" parent="." instance=ExtResource("15_wgldv")]
+transform = Transform3D(-1.58933e-08, 0, -1, 0, 1, 0, 1, 0, -1.58933e-08, -480, 1, 25.6)
+task = "Investigate the diner"
+
+[node name="CollisionShape3D" parent="Task Trigger3" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1.5)
+shape = SubResource("BoxShape3D_tuw6a")
+
+[node name="Task Trigger4" parent="." instance=ExtResource("15_wgldv")]
+transform = Transform3D(-1.58933e-08, 0, -1, 0, 1, 0, 1, 0, -1.58933e-08, -475, 1.2, 31.6)
+task = "Return to the path"
+
+[node name="CollisionShape3D" parent="Task Trigger4" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1.5)
+shape = SubResource("BoxShape3D_tuw6a")
+
+[node name="Dialogue trigger" parent="." instance=ExtResource("16_tuw6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -483, 0.4, -26)
+dial = " What are street lamps doing here? I should check where they lead to."
+
+[node name="Dialogue trigger2" parent="." instance=ExtResource("16_tuw6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -483, 0.4, -26)
+dial = "A diner..? Something's very wrong here!"
+
+[node name="CollisionShape3D" parent="Dialogue trigger2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 33)
+shape = SubResource("BoxShape3D_6xiif")
+
+[node name="Dialogue trigger3" parent="." instance=ExtResource("16_tuw6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -483, 0.4, 20)
+dial = "It feels... off. It's like I've been here before."
+
+[node name="CollisionShape3D" parent="Dialogue trigger3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 7.499)
+shape = SubResource("BoxShape3D_eblmg")
+
+[node name="Dialogue trigger4" parent="." instance=ExtResource("16_tuw6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -483, 0.4, 29)
+dial = "I should just leave"
+
+[node name="CollisionShape3D" parent="Dialogue trigger4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.60001, 1, 2.499)
+shape = SubResource("BoxShape3D_eblmg")
+
 [connection signal="interacted" from="EasterEgg" to="EasterEgg" method="_on_interacted"]
+
+[editable path="Task Trigger"]
+[editable path="Task Trigger2"]
+[editable path="Task Trigger3"]
+[editable path="Task Trigger4"]
+[editable path="Dialogue trigger"]
+[editable path="Dialogue trigger2"]
+[editable path="Dialogue trigger3"]
+[editable path="Dialogue trigger4"]

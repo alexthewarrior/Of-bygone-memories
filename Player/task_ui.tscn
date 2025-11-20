@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cesim2k4jhpc2"]
+
+[ext_resource type="FontFile" uid="uid://c81judugl1inh" path="res://VCR_OSD_MONO_1.001.ttf" id="1_0gyik"]
+
+[node name="TaskUI" type="CanvasLayer"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 91.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("1_0gyik")
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+text = "Task:"
+
+[node name="task_text" type="RichTextLabel" parent="."]
+offset_top = 29.0
+offset_right = 406.0
+offset_bottom = 69.0
+theme_override_fonts/normal_font = ExtResource("1_0gyik")
+theme_override_font_sizes/normal_font_size = 20
+text = "Sample text"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4nis02k1nc0e"]
+[gd_scene load_steps=32 format=3 uid="uid://d4nis02k1nc0e"]
 
 [ext_resource type="PackedScene" uid="uid://0bcnn64nlk6x" path="res://fir_tree.tscn" id="1_rw34k"]
 [ext_resource type="Texture2D" uid="uid://cdl0rxqos7syt" path="res://Levels/Segment 2/Textures/grass_packed_albedo_height.png" id="1_t6dbw"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="7_pxnsw"]
 [ext_resource type="PackedScene" uid="uid://twqk2uo7cby6" path="res://Scripts/Scene switch/scene_swticher.tscn" id="9_6el8p"]
 [ext_resource type="AudioStream" uid="uid://bnblt7pxop433" path="res://Sound/SFX/midnight.wav" id="11_6el8p"]
+[ext_resource type="PackedScene" uid="uid://83puk66x17j4" path="res://Scripts/task_trigger.tscn" id="12_pxnsw"]
+[ext_resource type="PackedScene" uid="uid://cwe4fd1p0tnau" path="res://Scripts/dialogue_trigger.tscn" id="13_gnnd5"]
 
 [sub_resource type="Gradient" id="Gradient_rtbwu"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -109,19 +111,24 @@ sky = SubResource("Sky_6el8p")
 ambient_light_source = 3
 ambient_light_energy = 0.0
 tonemap_mode = 3
-fog_enabled = true
 fog_light_color = Color(0.0484558, 0.0569966, 0.0704248, 1)
 fog_light_energy = 1.8
 fog_density = 0.1173
 fog_sky_affect = 0.799
-volumetric_fog_density = 0.1729
-volumetric_fog_emission_energy = 2.65
-volumetric_fog_length = 216.4
+volumetric_fog_density = 0.4336
+volumetric_fog_emission_energy = 99.9
+volumetric_fog_length = 606.02
 volumetric_fog_sky_affect = 0.14
 adjustment_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxnsw"]
 size = Vector3(927, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g87j0"]
+size = Vector3(499, 125, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vhi6"]
+size = Vector3(64, 31, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gnnd5"]
 size = Vector3(1, 9, 49)
@@ -136,7 +143,7 @@ top_level = true
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("7_pxnsw")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -249, 0, -2)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -266, 0, -4)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_og5op")
@@ -148,8 +155,16 @@ transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 170.5, 3
 shape = SubResource("BoxShape3D_pxnsw")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 170.5, 3.57628e-07, -13.5005)
-shape = SubResource("BoxShape3D_pxnsw")
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, -43.5, -1.49011e-06, -75.5005)
+shape = SubResource("BoxShape3D_g87j0")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 487.5, -1.49011e-06, -75.5005)
+shape = SubResource("BoxShape3D_g87j0")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, -1, 0, 1, 2.98023e-08, 220, -8.94065e-08, -124.501)
+shape = SubResource("BoxShape3D_4vhi6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270, 2, 1)
@@ -168,3 +183,39 @@ to_scene = "uid://cwol10jpjmigp"
 stream = ExtResource("11_6el8p")
 volume_db = -5.415
 autoplay = true
+
+[node name="Task Trigger" parent="." instance=ExtResource("12_pxnsw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -233, 0, -0.4)
+task = " Follow the road"
+
+[node name="Task Trigger2" parent="." instance=ExtResource("12_pxnsw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 219, 1, -0.4)
+task = " Check the diverging road"
+
+[node name="Task Trigger3" parent="." instance=ExtResource("12_pxnsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.6, 1, -74.4)
+task = " Check the diverging road"
+
+[node name="Task Trigger4" parent="." instance=ExtResource("12_pxnsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.6, 1, -92.4)
+task = "Leave the field by following the road"
+
+[node name="Dialogue trigger" parent="." instance=ExtResource("13_gnnd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -237, 0, -0.3)
+dial = " An asphalt road? What the hell?"
+
+[node name="Dialogue trigger2" parent="." instance=ExtResource("13_gnnd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.9, 0, -1.3)
+dial = "....Should I?"
+
+[node name="Dialogue trigger3" parent="." instance=ExtResource("13_gnnd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.9, 0, -80.3)
+dial = "Isn't that my car?"
+
+[node name="Dialogue trigger4" parent="." instance=ExtResource("13_gnnd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.9, 0, -91.3)
+dial = "I should get the hell out of the field"
+
+[node name="Dialogue trigger5" parent="." instance=ExtResource("13_gnnd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 315.9, 0, -0.300003)
+dial = "I feel as if I'm being watched. I must hurry!"

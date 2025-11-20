@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgvk7ut3h8rxx"]
+[gd_scene load_steps=18 format=3 uid="uid://bgvk7ut3h8rxx"]
 
 [ext_resource type="PackedScene" uid="uid://bklpxqva5gpl4" path="res://Player/Player.tscn" id="1_q2uhr"]
 [ext_resource type="PackedScene" uid="uid://ph1t4cv1g8dd" path="res://Objects/Button/Button.tscn" id="2_lxhny"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bbea5bhblahi5" path="res://Levels/vergil.gd" id="4_fms41"]
 [ext_resource type="Texture2D" uid="uid://v03b2odivbvf" path="res://easter1.jpg" id="4_vqjo5"]
 [ext_resource type="AudioStream" uid="uid://d0vc27dl47rsk" path="res://Sound/SFX/wheersypurmotivation.wav" id="6_fms41"]
+[ext_resource type="PackedScene" uid="uid://83puk66x17j4" path="res://Scripts/task_trigger.tscn" id="7_6toei"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r2eol"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -111,6 +112,14 @@ shape = SubResource("BoxShape3D_vyijd")
 [node name="motivation" type="AudioStreamPlayer3D" parent="Vergil"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387729, 0)
 stream = ExtResource("6_fms41")
+
+[node name="Task Trigger" parent="." instance=ExtResource("7_6toei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.00394, -0.167325, -3.01227)
+task = " A"
+
+[node name="Task Trigger2" parent="." instance=ExtResource("7_6toei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0203, -0.0675682, -1.86404)
+task = " B"
 
 [connection signal="tree_entered" from="Area3D" to="Area3D" method="_on_tree_entered"]
 [connection signal="interacted" from="Vergil" to="Vergil" method="_on_interacted"]

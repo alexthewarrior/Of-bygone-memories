@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bffwoouwkappc"]
+
+[ext_resource type="PackedScene" uid="uid://bd07xi4a41ymv" path="res://Objects/Newspapers/ps1_style_newspaper__bloody_and_normal_versions.glb" id="1_nrjiy"]
+[ext_resource type="Script" uid="uid://nf5s0407stfo" path="res://Objects/Newspapers/news.gd" id="2_que8l"]
+[ext_resource type="FontFile" uid="uid://c81judugl1inh" path="res://VCR_OSD_MONO_1.001.ttf" id="3_ww1ib"]
+[ext_resource type="PackedScene" uid="uid://c2udlk8edmfs" path="res://vhs.tscn" id="4_wp3yw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nrjiy"]
+size = Vector3(0.4, 0.3, 0.001)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v7o48"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_nrjiy")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/47f40639606442f7baedac6b0e6e0d69_fbx/RootNode/Newspaper01/Newspaper01_Newspaper Texture02_0" index="0"]
+script = ExtResource("2_que8l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/47f40639606442f7baedac6b0e6e0d69_fbx/RootNode/Newspaper01/Newspaper01_Newspaper Texture02_0/StaticBody3D" index="0"]
+transform = Transform3D(25.6258, 0, 0, 0, 25.6258, 4.17497e-06, 0, -4.17497e-06, 25.6258, 0, 3.84386, 0.0128115)
+shape = SubResource("BoxShape3D_nrjiy")
+
+[node name="Newspaper02" parent="Sketchfab_model/47f40639606442f7baedac6b0e6e0d69_fbx/RootNode" index="1"]
+visible = false
+
+[node name="NewsFlash" type="CanvasLayer" parent="." index="1"]
+
+[node name="Panel" type="Panel" parent="NewsFlash" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -229.0
+offset_right = 357.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="task_text" type="RichTextLabel" parent="NewsFlash/Panel" index="0"]
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 720.0
+offset_bottom = 473.0
+theme_override_fonts/normal_font = ExtResource("3_ww1ib")
+theme_override_font_sizes/normal_font_size = 20
+text = "                 10.05.1982 BREAKING NEWS
+
+Residents of a usually peaceful apartment building on Elm Street were shaken late Tuesday evening when authorities discovered the body of a 34-year-old man in his third-floor unit. Police responded to a noise complaint around 9:45 p.m. and found signs of forced entry and a violent struggle inside the apartment.
+
+The victim’s identity has not yet been released, pending notification of next of kin. Neighbors reported hearing shouting earlier in the evening but assumed it was a domestic dispute. One resident, who asked to remain anonymous, described the scene as \"something out of a nightmare.\"
+
+Detectives from the city’s homicide division are leading the investigation. No suspects have been named, but authorities are reviewing surveillance footage and interviewing residents. Police have urged anyone with information to come forward."
+
+[node name="Close" type="Button" parent="NewsFlash/Panel" index="1"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("3_ww1ib")
+theme_override_icons/icon = SubResource("ViewportTexture_v7o48")
+text = "Close"
+
+[node name="VHS" parent="NewsFlash" index="1" instance=ExtResource("4_wp3yw")]
+
+[connection signal="pressed" from="NewsFlash/Panel/Close" to="Sketchfab_model/47f40639606442f7baedac6b0e6e0d69_fbx/RootNode/Newspaper01/Newspaper01_Newspaper Texture02_0/StaticBody3D" method="_on_close_pressed"]
